@@ -1,0 +1,3373 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Consent Manager Dashboard— DPDP Act 2023 | Govt. of Uttarakhand
+    </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.1.0/dist/tabler-icons.min.css"
+    />
+    <style>
+      :root {
+        --navy: #1b3d6f;
+        --navy2: #2a5298;
+        --navy3: #0f2748;
+        --teal: #0d5f5a;
+        --teal2: #1a7f78;
+        --teal3: #e6f5f4;
+        --gold: #c9a227;
+        --gold2: #fdf6e3;
+        --danger: #dc2626;
+        --danger2: #fef2f2;
+        --success: #16a34a;
+        --success2: #f0fdf4;
+        --warn: #d97706;
+        --warn2: #fffbeb;
+        --indigo: #4338ca;
+        --indigo2: #eef2ff;
+        --bg: #eff3f8;
+        --surf: #ffffff;
+        --bdr: #e2e8f0;
+        --tx1: #1a202c;
+        --tx2: #4a5568;
+        --txm: #94a3b8;
+        --sw: 264px;
+        --r8: 8px;
+        --r10: 10px;
+        --r12: 12px;
+        --r14: 14px;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+        background: var(--bg);
+        color: var(--tx1);
+        font-size: 14px;
+        line-height: 1.6;
+      }
+
+      /* ── LOGIN ── */
+      #login {
+        min-height: 100vh;
+        background: linear-gradient(
+          145deg,
+          #0f2748 0%,
+          #1b3d6f 45%,
+          #0d5f5a 100%
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        position: relative;
+        overflow: hidden;
+      }
+      #login::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      }
+      .lcard {
+        background: #fff;
+        border-radius: 20px;
+        padding: 2.75rem;
+        width: 100%;
+        max-width: 500px;
+        box-shadow: 0 32px 64px rgba(0, 0, 0, 0.3);
+        position: relative;
+        z-index: 1;
+      }
+      .lhead {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+      .lemblem {
+        width: 76px;
+        height: 76px;
+        background: linear-gradient(135deg, var(--navy), var(--teal));
+        border-radius: 18px;
+        margin: 0 auto 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .lemblem i {
+        color: #fff;
+        font-size: 38px;
+      }
+      .lhead h1 {
+        font-size: 22px;
+        font-weight: 800;
+        color: var(--navy);
+      }
+      .lhead .sub {
+        font-size: 12px;
+        color: var(--tx2);
+        margin-top: 3px;
+      }
+      .act-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        margin-top: 10px;
+        padding: 4px 12px;
+        background: var(--teal3);
+        color: var(--teal);
+        border-radius: 20px;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.4px;
+      }
+      .role-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-bottom: 1.5rem;
+      }
+      .rc {
+        border: 2px solid var(--bdr);
+        border-radius: 12px;
+        padding: 1rem;
+        cursor: pointer;
+        transition: all 0.2s;
+        text-align: center;
+      }
+      .rc:hover {
+        border-color: var(--navy);
+        background: #f8f9ff;
+      }
+      .rc.sel {
+        border-color: var(--teal);
+        background: var(--teal3);
+      }
+      .rc i {
+        font-size: 28px;
+        color: var(--tx2);
+        display: block;
+        margin-bottom: 6px;
+      }
+      .rc.sel i {
+        color: var(--teal);
+      }
+      .rc .rn {
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--tx1);
+      }
+      .rc .rd {
+        font-size: 11px;
+        color: var(--txm);
+        margin-top: 2px;
+      }
+      .fg {
+        margin-bottom: 1.1rem;
+      }
+      .fg label {
+        display: block;
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--tx2);
+        margin-bottom: 5px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      .fg input,
+      .fg select {
+        width: 100%;
+        padding: 10px 14px;
+        border: 1.5px solid var(--bdr);
+        border-radius: var(--r8);
+        font-size: 14px;
+        font-family: inherit;
+        outline: none;
+        transition: border-color 0.15s;
+      }
+      .fg input:focus,
+      .fg select:focus {
+        border-color: var(--teal);
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 9px 18px;
+        border-radius: var(--r8);
+        font-size: 13px;
+        font-weight: 700;
+        font-family: inherit;
+        cursor: pointer;
+        border: none;
+        transition: all 0.15s;
+      }
+      .btn-primary {
+        background: linear-gradient(135deg, var(--navy), var(--navy2));
+        color: #fff;
+        width: 100%;
+        justify-content: center;
+        padding: 12px;
+      }
+      .btn-primary:hover {
+        opacity: 0.9;
+        transform: translateY(-1px);
+      }
+      .btn-teal {
+        background: var(--teal);
+        color: #fff;
+      }
+      .btn-teal:hover {
+        background: var(--teal2);
+      }
+      .btn-outline {
+        background: transparent;
+        border: 1.5px solid var(--bdr);
+        color: var(--tx2);
+      }
+      .btn-outline:hover {
+        background: var(--bg);
+        border-color: var(--navy);
+        color: var(--navy);
+      }
+      .btn-danger {
+        background: var(--danger);
+        color: #fff;
+      }
+      .btn-danger:hover {
+        opacity: 0.9;
+      }
+      .btn-sm {
+        padding: 5px 11px;
+        font-size: 12px;
+      }
+      .lfoot {
+        text-align: center;
+        margin-top: 1.25rem;
+        font-size: 11px;
+        color: var(--txm);
+        line-height: 1.9;
+      }
+      .lfoot-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        margin-bottom: 4px;
+      }
+
+      /* ── APP ── */
+      #app {
+        display: none;
+        min-height: 100vh;
+      }
+      #app.vis {
+        display: flex;
+      }
+
+      /* ── SIDEBAR ── */
+      .sb {
+        width: var(--sw);
+        background: var(--navy3);
+        min-height: 100vh;
+        position: fixed;
+        left: 0;
+        top: 0;
+        display: flex;
+        flex-direction: column;
+        z-index: 100;
+        border-right: 1px solid rgba(255, 255, 255, 0.06);
+      }
+      .sb-hdr {
+        padding: 1.25rem 1.1rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .sb-logo {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        margin-bottom: 12px;
+      }
+      .sb-logo-ico {
+        width: 38px;
+        height: 38px;
+        background: rgba(255, 255, 255, 0.12);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .sb-logo-ico i {
+        color: #fff;
+        font-size: 20px;
+      }
+      .sb-logo-txt h2 {
+        font-size: 14px;
+        font-weight: 800;
+        color: #fff;
+        line-height: 1.2;
+      }
+      .sb-logo-txt span {
+        font-size: 10px;
+        color: rgba(255, 255, 255, 0.4);
+      }
+      .sb-user {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+      }
+      .sb-av {
+        width: 34px;
+        height: 34px;
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .sb-av i {
+        color: #fff;
+        font-size: 17px;
+      }
+      .sb-un {
+        font-size: 12px;
+        font-weight: 700;
+        color: #fff;
+        line-height: 1.3;
+      }
+      .sb-ur {
+        font-size: 10px;
+        color: rgba(255, 255, 255, 0.45);
+      }
+      .sb-nav {
+        flex: 1;
+        padding: 0.75rem 0;
+        overflow-y: auto;
+      }
+      .nav-lbl {
+        padding: 8px 1.1rem 3px;
+        font-size: 9.5px;
+        font-weight: 800;
+        color: rgba(255, 255, 255, 0.3);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      .ni {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        padding: 8px 1.1rem;
+        cursor: pointer;
+        transition: background 0.12s;
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 13px;
+        font-weight: 500;
+      }
+      .ni:hover {
+        background: rgba(255, 255, 255, 0.07);
+        color: #fff;
+      }
+      .ni.active {
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        border-right: 3px solid var(--gold);
+      }
+      .ni i {
+        font-size: 16px;
+        width: 18px;
+        flex-shrink: 0;
+      }
+      .nb {
+        margin-left: auto;
+        background: var(--danger);
+        color: #fff;
+        font-size: 9px;
+        font-weight: 800;
+        padding: 2px 6px;
+        border-radius: 10px;
+      }
+      .sb-ft {
+        padding: 0.9rem 1.1rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .sb-ft p {
+        font-size: 9.5px;
+        color: rgba(255, 255, 255, 0.3);
+        line-height: 1.8;
+      }
+
+      /* ── MAIN ── */
+      .mc {
+        margin-left: var(--sw);
+        flex: 1;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      .topbar {
+        background: #fff;
+        border-bottom: 1px solid var(--bdr);
+        padding: 0 1.75rem;
+        height: 58px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: sticky;
+        top: 0;
+        z-index: 50;
+      }
+      .topbar-title {
+        font-size: 15px;
+        font-weight: 800;
+        color: var(--tx1);
+      }
+      .tbr {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .role-badge {
+        padding: 3px 10px;
+        border-radius: 6px;
+        font-size: 10px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      .rb-principal {
+        background: var(--teal3);
+        color: var(--teal);
+      }
+      .rb-manager {
+        background: var(--indigo2);
+        color: var(--indigo);
+      }
+      .rb-dpo {
+        background: var(--gold2);
+        color: var(--gold);
+      }
+      .rb-fiduciary {
+        background: #fdf2f8;
+        color: #9d174d;
+      }
+      .tb-divider {
+        width: 1px;
+        height: 22px;
+        background: var(--bdr);
+      }
+      .tb-btn {
+        width: 34px;
+        height: 34px;
+        border-radius: var(--r8);
+        border: 1px solid var(--bdr);
+        background: transparent;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--tx2);
+        font-size: 15px;
+        transition: all 0.12s;
+        position: relative;
+      }
+      .tb-btn:hover {
+        background: var(--bg);
+        color: var(--navy);
+      }
+      .ndot {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        width: 7px;
+        height: 7px;
+        background: var(--danger);
+        border-radius: 50%;
+        border: 1.5px solid #fff;
+      }
+      .content {
+        padding: 1.75rem;
+        flex: 1;
+      }
+
+      /* ── VIEWS ── */
+      .view {
+        display: none;
+      }
+      .view.active {
+        display: block;
+      }
+
+      /* ── PAGE HEADER ── */
+      .ph {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        margin-bottom: 1.5rem;
+      }
+      .ph h1 {
+        font-size: 21px;
+        font-weight: 800;
+        color: var(--tx1);
+      }
+      .ph p {
+        font-size: 12px;
+        color: var(--tx2);
+        margin-top: 3px;
+      }
+      .ph-actions {
+        display: flex;
+        gap: 8px;
+        flex-shrink: 0;
+      }
+
+      /* ── METRICS ── */
+      .mgrid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 14px;
+        margin-bottom: 1.5rem;
+      }
+      .mc-card {
+        background: var(--surf);
+        border-radius: var(--r12);
+        padding: 1.1rem;
+        border: 1px solid var(--bdr);
+      }
+      .mc-lbl {
+        font-size: 11px;
+        color: var(--txm);
+        font-weight: 600;
+        margin-bottom: 7px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+      .mc-lbl i {
+        font-size: 13px;
+      }
+      .mc-val {
+        font-size: 27px;
+        font-weight: 800;
+        color: var(--tx1);
+        line-height: 1;
+        margin-bottom: 5px;
+      }
+      .mc-ch {
+        font-size: 11px;
+        color: var(--txm);
+      }
+      .mc-ch.up {
+        color: var(--success);
+      }
+      .mc-ch.dn {
+        color: var(--danger);
+      }
+
+      /* ── CARD ── */
+      .card {
+        background: var(--surf);
+        border-radius: var(--r12);
+        border: 1px solid var(--bdr);
+      }
+      .ch {
+        padding: 0.9rem 1.2rem;
+        border-bottom: 1px solid var(--bdr);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .ct {
+        font-size: 13px;
+        font-weight: 800;
+        color: var(--tx1);
+        display: flex;
+        align-items: center;
+        gap: 7px;
+      }
+      .ct i {
+        font-size: 15px;
+        color: var(--teal);
+      }
+      .cb {
+        padding: 1.2rem;
+      }
+      .g2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+      .g3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+      }
+
+      /* ── TABLE ── */
+      .tw {
+        overflow-x: auto;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      thead th {
+        padding: 9px 13px;
+        text-align: left;
+        font-size: 10.5px;
+        font-weight: 800;
+        color: var(--txm);
+        text-transform: uppercase;
+        letter-spacing: 0.6px;
+        background: var(--bg);
+        border-bottom: 1px solid var(--bdr);
+      }
+      tbody tr {
+        border-bottom: 1px solid var(--bdr);
+        transition: background 0.1s;
+      }
+      tbody tr:last-child {
+        border-bottom: none;
+      }
+      tbody tr:hover {
+        background: #f7fafd;
+      }
+      tbody td {
+        padding: 11px 13px;
+        font-size: 12.5px;
+        color: var(--tx1);
+        vertical-align: middle;
+      }
+
+      /* ── BADGES ── */
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 3px 8px;
+        border-radius: 5px;
+        font-size: 10.5px;
+        font-weight: 700;
+        white-space: nowrap;
+      }
+      .badge i {
+        font-size: 10px;
+      }
+      .b-active {
+        background: var(--success2);
+        color: var(--success);
+      }
+      .b-pending {
+        background: var(--warn2);
+        color: var(--warn);
+      }
+      .b-revoked {
+        background: var(--danger2);
+        color: var(--danger);
+      }
+      .b-expired {
+        background: var(--bg);
+        color: var(--txm);
+      }
+      .b-deemed {
+        background: var(--indigo2);
+        color: var(--indigo);
+      }
+      .b-explicit {
+        background: var(--teal3);
+        color: var(--teal);
+      }
+      .b-info {
+        background: var(--indigo2);
+        color: var(--indigo);
+      }
+      .b-warn {
+        background: var(--warn2);
+        color: var(--warn);
+      }
+
+      /* ── FILTER BAR ── */
+      .fbar {
+        display: flex;
+        gap: 9px;
+        margin-bottom: 1.1rem;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+      .si {
+        flex: 1;
+        min-width: 180px;
+        position: relative;
+      }
+      .si i {
+        position: absolute;
+        left: 9px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--txm);
+        font-size: 14px;
+      }
+      .si input {
+        width: 100%;
+        padding: 7px 11px 7px 32px;
+        border: 1.5px solid var(--bdr);
+        border-radius: var(--r8);
+        font-size: 12.5px;
+        font-family: inherit;
+        outline: none;
+      }
+      .si input:focus {
+        border-color: var(--teal);
+      }
+      .fsel {
+        padding: 7px 11px;
+        border: 1.5px solid var(--bdr);
+        border-radius: var(--r8);
+        font-size: 12.5px;
+        font-family: inherit;
+        outline: none;
+        background: #fff;
+        cursor: pointer;
+      }
+      .fsel:focus {
+        border-color: var(--teal);
+      }
+
+      /* ── TIMELINE ── */
+      .tl {
+        list-style: none;
+      }
+      .tli {
+        display: flex;
+        gap: 11px;
+        padding-bottom: 1.1rem;
+        position: relative;
+      }
+      .tli:last-child {
+        padding-bottom: 0;
+      }
+      .tli::before {
+        content: "";
+        position: absolute;
+        left: 13px;
+        top: 26px;
+        width: 1px;
+        height: calc(100% - 6px);
+        background: var(--bdr);
+      }
+      .tli:last-child::before {
+        display: none;
+      }
+      .td {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        font-size: 12px;
+      }
+      .td.g {
+        background: var(--success2);
+        color: var(--success);
+      }
+      .td.r {
+        background: var(--danger2);
+        color: var(--danger);
+      }
+      .td.b {
+        background: var(--indigo2);
+        color: var(--indigo);
+      }
+      .td.a {
+        background: var(--warn2);
+        color: var(--warn);
+      }
+      .tc-t {
+        font-size: 12.5px;
+        font-weight: 700;
+      }
+      .tc-d {
+        font-size: 11.5px;
+        color: var(--tx2);
+        margin-top: 2px;
+      }
+      .tc-ts {
+        font-size: 10.5px;
+        color: var(--txm);
+        margin-top: 2px;
+      }
+
+      /* ── CHIPS ── */
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+      }
+      .chip {
+        padding: 3px 9px;
+        background: var(--bg);
+        border: 1px solid var(--bdr);
+        border-radius: 20px;
+        font-size: 11px;
+        color: var(--tx2);
+        font-weight: 500;
+      }
+
+      /* ── DETAIL ── */
+      .dr {
+        display: flex;
+        gap: 8px;
+        padding: 9px 0;
+        border-bottom: 1px solid var(--bdr);
+      }
+      .dr:last-child {
+        border-bottom: none;
+      }
+      .dl {
+        font-size: 11.5px;
+        font-weight: 700;
+        color: var(--txm);
+        text-transform: uppercase;
+        letter-spacing: 0.4px;
+        width: 148px;
+        flex-shrink: 0;
+      }
+      .dv {
+        font-size: 12.5px;
+        color: var(--tx1);
+        flex: 1;
+      }
+
+      /* ── PROGRESS ── */
+      .pbar {
+        background: var(--bg);
+        border-radius: 10px;
+        height: 5px;
+        overflow: hidden;
+      }
+      .pfill {
+        height: 100%;
+        border-radius: 10px;
+        background: var(--teal);
+      }
+
+      /* ── RIGHTS CARDS ── */
+      .rgrid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+        gap: 14px;
+        margin-bottom: 1.5rem;
+      }
+      .rcard {
+        background: #fff;
+        border: 1px solid var(--bdr);
+        border-radius: var(--r12);
+        padding: 1.15rem;
+        cursor: pointer;
+        transition: all 0.2s;
+        display: flex;
+        flex-direction: column;
+        gap: 9px;
+      }
+      .rcard:hover {
+        border-color: var(--teal);
+        box-shadow: 0 4px 16px rgba(13, 95, 90, 0.12);
+        transform: translateY(-2px);
+      }
+      .ri-wrap {
+        width: 42px;
+        height: 42px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 21px;
+      }
+      .rn {
+        font-size: 13.5px;
+        font-weight: 800;
+        color: var(--tx1);
+      }
+      .rs {
+        font-size: 10.5px;
+        color: var(--txm);
+      }
+      .rdesc {
+        font-size: 11.5px;
+        color: var(--tx2);
+        line-height: 1.5;
+      }
+
+      /* ── COMPLIANCE BANNER ── */
+      .cbanner {
+        background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
+        border-radius: var(--r12);
+        padding: 1.15rem 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        color: #fff;
+      }
+      .cbanner i {
+        font-size: 28px;
+        opacity: 0.9;
+        flex-shrink: 0;
+      }
+      .cbanner h3 {
+        font-size: 14px;
+        font-weight: 800;
+        margin-bottom: 2px;
+      }
+      .cbanner p {
+        font-size: 11.5px;
+        opacity: 0.7;
+      }
+      .cscore {
+        margin-left: auto;
+        text-align: center;
+        flex-shrink: 0;
+      }
+      .cscore .sv {
+        font-size: 30px;
+        font-weight: 900;
+        color: #7fe9d0;
+      }
+      .cscore .sl {
+        font-size: 9.5px;
+        opacity: 0.6;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      /* ── ALERT ── */
+      .alert {
+        padding: 11px 14px;
+        border-radius: var(--r8);
+        font-size: 12.5px;
+        display: flex;
+        align-items: flex-start;
+        gap: 9px;
+        margin-bottom: 1.1rem;
+      }
+      .alert i {
+        font-size: 15px;
+        flex-shrink: 0;
+        margin-top: 1px;
+      }
+      .a-info {
+        background: var(--indigo2);
+        color: #312e81;
+        border: 1px solid #c7d2fe;
+      }
+      .a-warn {
+        background: var(--warn2);
+        color: #78350f;
+        border: 1px solid #fde68a;
+      }
+      .a-ok {
+        background: var(--success2);
+        color: #14532d;
+        border: 1px solid #bbf7d0;
+      }
+
+      /* ── SECTION DIVIDER ── */
+      .sdiv {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        margin: 1.25rem 0 0.85rem;
+      }
+      .sdiv h3 {
+        font-size: 10.5px;
+        font-weight: 800;
+        color: var(--txm);
+        text-transform: uppercase;
+        letter-spacing: 0.7px;
+        white-space: nowrap;
+      }
+      .sdiv::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: var(--bdr);
+      }
+
+      /* ── ACTION BTNS ── */
+      .ab {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 4px 9px;
+        border-radius: 5px;
+        font-size: 11px;
+        font-weight: 700;
+        cursor: pointer;
+        border: 1px solid transparent;
+        font-family: inherit;
+        transition: all 0.12s;
+      }
+      .ab-v {
+        background: var(--indigo2);
+        color: var(--indigo);
+      }
+      .ab-v:hover {
+        background: #e0e7ff;
+      }
+      .ab-rv {
+        background: var(--danger2);
+        color: var(--danger);
+      }
+      .ab-rv:hover {
+        background: #fee2e2;
+      }
+      .ab-ok {
+        background: var(--success2);
+        color: var(--success);
+      }
+      .ab-ok:hover {
+        background: #d1fae5;
+      }
+      .ab-pr {
+        background: var(--warn2);
+        color: var(--warn);
+      }
+
+      /* ── CONSENT REQUEST CARD ── */
+      .crc {
+        background: #fff;
+        border: 1px solid var(--bdr);
+        border-left: 4px solid var(--warn);
+        border-radius: var(--r10);
+        padding: 1.15rem;
+        margin-bottom: 11px;
+      }
+      .sec-tag {
+        font-size: 10px;
+        font-weight: 800;
+        padding: 2px 6px;
+        border-radius: 4px;
+        background: var(--navy);
+        color: #fff;
+        letter-spacing: 0.3px;
+      }
+
+      /* ── DEPT COLORS ── */
+      .d-revenue {
+        background: #fef3c7;
+        color: #92400e;
+      }
+      .d-health {
+        background: #d1fae5;
+        color: #065f46;
+      }
+      .d-edu {
+        background: #dbeafe;
+        color: #1e3a8a;
+      }
+      .d-transport {
+        background: #fce7f3;
+        color: #9d174d;
+      }
+      .d-welfare {
+        background: #ede9fe;
+        color: #4c1d95;
+      }
+      .d-police {
+        background: #f3f4f6;
+        color: #1f2937;
+      }
+      .d-urban {
+        background: #cffafe;
+        color: #164e63;
+      }
+      .d-labour {
+        background: #fef9c3;
+        color: #713f12;
+      }
+
+      /* ── NOTICE CARD ── */
+      .ncard {
+        background: #fff;
+        border: 1px solid var(--bdr);
+        border-radius: var(--r10);
+        padding: 1.15rem;
+        display: flex;
+        flex-direction: column;
+        gap: 9px;
+      }
+
+      /* ── COMPLIANCE SECTION ── */
+      .csc {
+        background: #fff;
+        border: 1px solid var(--bdr);
+        border-radius: var(--r10);
+        padding: 0.95rem;
+        display: flex;
+        align-items: center;
+        gap: 11px;
+      }
+      .csi {
+        width: 38px;
+        height: 38px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 900;
+        font-size: 12px;
+        flex-shrink: 0;
+      }
+      .cst.compliant {
+        color: var(--success);
+      }
+      .cst.partial {
+        color: var(--warn);
+      }
+      .cst.review {
+        color: var(--danger);
+      }
+
+      /* ── STATUS BADGES ── */
+      .ss-p {
+        background: var(--warn2);
+        color: var(--warn);
+      }
+      .ss-g {
+        background: var(--indigo2);
+        color: var(--indigo);
+      }
+      .ss-r {
+        background: var(--success2);
+        color: var(--success);
+      }
+      .ss-rj {
+        background: var(--danger2);
+        color: var(--danger);
+      }
+
+      /* ── MODAL ── */
+      .moverlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 500;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1.5rem;
+      }
+      .modal {
+        background: #fff;
+        border-radius: 16px;
+        width: 100%;
+        max-width: 560px;
+        max-height: 90vh;
+        overflow-y: auto;
+      }
+      .mh {
+        padding: 1.15rem 1.4rem;
+        border-bottom: 1px solid var(--bdr);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .mh h3 {
+        font-size: 15px;
+        font-weight: 800;
+      }
+      .mc-btn {
+        width: 28px;
+        height: 28px;
+        border-radius: 6px;
+        border: none;
+        background: var(--bg);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+      }
+      .mb {
+        padding: 1.4rem;
+      }
+      .mf {
+        padding: 0.9rem 1.4rem;
+        border-top: 1px solid var(--bdr);
+        display: flex;
+        gap: 8px;
+        justify-content: flex-end;
+      }
+      .hidden {
+        display: none !important;
+      }
+
+      /* ── MISC ── */
+      code {
+        font-size: 11px;
+        background: var(--bg);
+        padding: 2px 5px;
+        border-radius: 4px;
+        color: var(--tx2);
+      }
+      .separator {
+        height: 1px;
+        background: var(--bdr);
+        margin: 1.1rem 0;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ============================= LOGIN ============================= -->
+    <div id="login">
+      <div class="lcard">
+        <div class="lhead">
+          <div class="lemblem"><i class="ti ti-shield-lock"></i></div>
+          <h1>Consent Manager - Dashboard</h1>
+          <div class="sub">Digital Personal Data Protection Act 2023</div>
+          <div class="sub">Government of Uttarakhand · ITDA</div>
+          <div class="act-pill">
+            <i class="ti ti-certificate" style="font-size: 12px"></i> DPDP Act
+            2023 Compliant Platform
+          </div>
+        </div>
+
+        <p
+          style="
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--tx2);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 9px;
+          "
+        >
+          Select Your Role
+        </p>
+        <div class="role-grid">
+          <div class="rc sel" onclick="selRole('principal', this)">
+            <i class="ti ti-user-circle"></i>
+            <div class="rn">Data Principal</div>
+            <div class="rd">Citizen / Individual</div>
+          </div>
+          <div class="rc" onclick="selRole('manager', this)">
+            <i class="ti ti-building-community"></i>
+            <div class="rn">Consent Manager</div>
+            <div class="rd">State / Dept. Officer</div>
+          </div>
+          <div class="rc" onclick="selRole('dpo', this)">
+            <i class="ti ti-certificate"></i>
+            <div class="rn">Data Protection Officer</div>
+            <div class="rd">DPO / Compliance Head</div>
+          </div>
+          <div class="rc" onclick="selRole('fiduciary', this)">
+            <i class="ti ti-building-bank"></i>
+            <div class="rn">Data Fiduciary</div>
+            <div class="rd">Department / Agency Head</div>
+          </div>
+        </div>
+
+        <div class="fg">
+          <label>Aadhaar / DigiLocker / Employee ID</label>
+          <input
+            id="lid"
+            type="text"
+            placeholder="Enter your identifier"
+            value="1234 5678 9012"
+          />
+        </div>
+        <div class="fg">
+          <label>OTP / Password</label>
+          <input
+            id="lpw"
+            type="password"
+            placeholder="Enter OTP sent to registered mobile"
+            value="••••••"
+          />
+        </div>
+        <button class="btn btn-primary" onclick="doLogin()">
+          <i class="ti ti-login"></i> Sign In Securely
+        </button>
+
+        <div class="lfoot">
+          <div class="lfoot-row">
+            <i class="ti ti-lock" style="font-size: 13px"></i> End-to-end
+            Encrypted
+            <span>·</span>
+            <i class="ti ti-server" style="font-size: 13px"></i> NIC Data Centre
+            <span>·</span>
+            <i class="ti ti-certificate" style="font-size: 13px"></i> ISO 27001
+          </div>
+          Grievance Officer: dpdp-uk@gov.in &nbsp;|&nbsp; Toll Free:
+          1800-180-XXXX
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================= APP ============================= -->
+    <div id="app">
+      <aside class="sb" id="sb">
+        <div class="sb-hdr">
+          <div class="sb-logo">
+            <div class="sb-logo-ico"><i class="ti ti-shield-check"></i></div>
+            <div class="sb-logo-txt">
+              <h2>Consent Dashboard</h2>
+              <span>DPDP Act 2023 · Uttarakhand</span>
+            </div>
+          </div>
+          <div class="sb-user">
+            <div class="sb-av"><i class="ti ti-user" id="sb-ico"></i></div>
+            <div>
+              <div class="sb-un" id="sb-name">Ramesh Kumar</div>
+              <div class="sb-ur" id="sb-role">Data Principal</div>
+            </div>
+          </div>
+        </div>
+        <nav class="sb-nav" id="sb-nav"></nav>
+        <div class="sb-ft">
+          <p>
+            Digital Personal Data Protection Act 2023<br />Sections 4–9, 11–14
+            Implemented<br />v2.4.1 · © Govt. of Uttarakhand 2024
+          </p>
+        </div>
+      </aside>
+
+      <main class="mc">
+        <div class="topbar">
+          <div class="topbar-title" id="tb-title">Dashboard</div>
+          <div class="tbr">
+            <span class="role-badge rb-principal" id="tb-rbadge"
+              >Data Principal</span
+            >
+            <div class="tb-divider"></div>
+            <button class="tb-btn" onclick="showNotifs()">
+              <i class="ti ti-bell"></i><span class="ndot"></span>
+            </button>
+            <button class="tb-btn"><i class="ti ti-help-circle"></i></button>
+            <button class="tb-btn" onclick="doLogout()">
+              <i class="ti ti-logout"></i>
+            </button>
+          </div>
+        </div>
+        <div class="content" id="content"></div>
+      </main>
+    </div>
+
+    <!-- MODAL -->
+    <div class="moverlay hidden" id="moverlay" onclick="closeModal(event)">
+      <div class="modal" onclick="event.stopPropagation()">
+        <div class="mh">
+          <h3 id="m-title">Title</h3>
+          <button class="mc-btn" onclick="closeModal()">
+            <i class="ti ti-x"></i>
+          </button>
+        </div>
+        <div class="mb" id="m-body"></div>
+        <div class="mf" id="m-foot"></div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+    <script>
+      // ======================== DATA ========================
+      const D = {
+        consents: [
+          {
+            id: "CNS-2024-001",
+            cit: "Ramesh Kumar Singh",
+            dept: "Revenue Department",
+            cat: "revenue",
+            purpose: "Land Records Access & Mutation Processing",
+            type: "explicit",
+            status: "active",
+            gd: "2024-01-20",
+            exp: "2025-01-20",
+            de: [
+              "Full Name",
+              "Aadhaar Number",
+              "Address",
+              "Khasra/Khatauni No.",
+              "Mobile",
+            ],
+            ntc: "NTC-REV-001",
+            dl: 234,
+          },
+          {
+            id: "CNS-2024-002",
+            cit: "Ramesh Kumar Singh",
+            dept: "Health Department",
+            cat: "health",
+            purpose: "CGHS Healthcare & OPD Registration",
+            type: "explicit",
+            status: "active",
+            gd: "2024-02-14",
+            exp: "2025-02-14",
+            de: [
+              "Name",
+              "Date of Birth",
+              "ABHA ID",
+              "Medical History",
+              "Insurance Details",
+            ],
+            ntc: "NTC-HLT-002",
+            dl: 261,
+          },
+          {
+            id: "CNS-2024-003",
+            cit: "Ramesh Kumar Singh",
+            dept: "Transport Department",
+            cat: "transport",
+            purpose: "Driving Licence Renewal & RC Smartcard",
+            type: "explicit",
+            status: "active",
+            gd: "2024-03-05",
+            exp: "2024-12-31",
+            de: ["Name", "DOB", "Address", "DL Number", "Biometric Reference"],
+            ntc: "NTC-TRP-003",
+            dl: 45,
+          },
+          {
+            id: "CNS-2024-004",
+            cit: "Ramesh Kumar Singh",
+            dept: "Social Welfare Department",
+            cat: "welfare",
+            purpose: "Vridha Pension Scheme Enrollment",
+            type: "deemed",
+            status: "active",
+            gd: "2023-11-01",
+            exp: "2026-10-31",
+            de: ["Name", "Aadhaar", "Bank Account", "Age Proof", "BPL Status"],
+            ntc: "NTC-SWL-004",
+            s7: "Section 7(b) — Legitimate State Function",
+            dl: 890,
+          },
+          {
+            id: "CNS-2023-005",
+            cit: "Ramesh Kumar Singh",
+            dept: "Urban Development",
+            cat: "urban",
+            purpose: "Property Tax & Jal Sansthan Connection",
+            type: "explicit",
+            status: "revoked",
+            gd: "2023-06-10",
+            exp: "2024-06-09",
+            de: ["Name", "Address", "Property ID", "Connection No."],
+            ntc: "NTC-URB-005",
+            rd: "2024-01-15",
+            rr: "Property transferred to new owner",
+            dl: 0,
+          },
+          {
+            id: "CNS-2024-006",
+            cit: "Ramesh Kumar Singh",
+            dept: "Education Department",
+            cat: "edu",
+            purpose: "Scholarship Portal & PFMS Student Verification",
+            type: "explicit",
+            status: "pending",
+            gd: null,
+            exp: null,
+            de: [
+              "Name",
+              "Roll Number",
+              "Income Certificate",
+              "Caste Certificate",
+              "Bank Details",
+            ],
+            ntc: "NTC-EDU-006",
+            reqd: "2024-11-01",
+            dl: null,
+          },
+        ],
+        rights: [
+          {
+            id: "RGT-2024-001",
+            cit: "Ramesh Kumar Singh",
+            type: "access",
+            tn: "Right to Access",
+            sec: "Section 11",
+            status: "resolved",
+            dept: "Revenue Department",
+            filed: "2024-09-15",
+            dl: "2024-10-15",
+            desc: "Request for copy of all personal data processed for land mutation application 2024",
+            res: "Data summary shared via DigiLocker on 2024-10-02",
+          },
+          {
+            id: "RGT-2024-002",
+            cit: "Ramesh Kumar Singh",
+            type: "correction",
+            tn: "Right to Correction",
+            sec: "Section 12(a)",
+            status: "processing",
+            dept: "Transport Department",
+            filed: "2024-10-28",
+            dl: "2024-11-27",
+            desc: "Correction of date of birth in DL records: 15/03/1985 → 15/03/1986",
+            res: null,
+          },
+          {
+            id: "RGT-2024-003",
+            cit: "Ramesh Kumar Singh",
+            type: "grievance",
+            tn: "Grievance Redressal",
+            sec: "Section 13",
+            status: "pending",
+            dept: "Health Department",
+            filed: "2024-11-02",
+            dl: "2024-12-02",
+            desc: "Medical records shared with third-party insurance provider without consent for the specific diagnostic query",
+            res: null,
+          },
+        ],
+        notices: [
+          {
+            id: "NTC-REV-001",
+            dept: "Revenue Department",
+            cat: "revenue",
+            purpose: "Land Records Access & Mutation Services",
+            de: ["Name", "Aadhaar", "Address", "Land Records", "Mobile"],
+            ret: "7 years from last transaction",
+            tp: false,
+            created: "2024-01-01",
+            status: "active",
+            cnt: 142857,
+            score: 98,
+          },
+          {
+            id: "NTC-HLT-002",
+            dept: "Health Department",
+            cat: "health",
+            purpose: "CGHS & State Health Services",
+            de: ["Name", "DOB", "ABHA ID", "Medical History", "Insurance"],
+            ret: "10 years (medical records)",
+            tp: true,
+            tpd: "NIC Health Cloud, ABDM",
+            created: "2024-01-15",
+            status: "active",
+            cnt: 287432,
+            score: 95,
+          },
+          {
+            id: "NTC-TRP-003",
+            dept: "Transport Department",
+            cat: "transport",
+            purpose: "Driving Licence & Vehicle Registration",
+            de: ["Name", "DOB", "DL Number", "Biometrics", "Address"],
+            ret: "Life of DL/RC + 5 years",
+            tp: true,
+            tpd: "MoRTH VAHAN/SARATHI",
+            created: "2024-02-01",
+            status: "active",
+            cnt: 98234,
+            score: 92,
+          },
+          {
+            id: "NTC-EDU-006",
+            dept: "Education Department",
+            cat: "edu",
+            purpose: "Scholarship & Student Welfare Programs",
+            de: [
+              "Name",
+              "Roll No.",
+              "Income Cert.",
+              "Caste Cert.",
+              "Bank Details",
+            ],
+            ret: "5 years from scholarship year",
+            tp: true,
+            tpd: "PFMS, NSP National Scholarship Portal",
+            created: "2024-03-01",
+            status: "review",
+            cnt: 54321,
+            score: 78,
+          },
+        ],
+        audit: [
+          {
+            ts: "2024-11-05 14:23:11",
+            type: "CONSENT_GRANTED",
+            actor: "Ramesh Kumar",
+            ev: "Explicit consent granted for Transport Dept DL Renewal (CNS-2024-003)",
+            hash: "a7f3...9c2e",
+          },
+          {
+            ts: "2024-11-04 09:15:33",
+            type: "RIGHT_FILED",
+            actor: "Ramesh Kumar",
+            ev: "Grievance filed against Health Department (RGT-2024-003)",
+            hash: "b2e1...4f7a",
+          },
+          {
+            ts: "2024-10-28 11:47:22",
+            type: "CORRECTION_REQ",
+            actor: "Ramesh Kumar",
+            ev: "Right to Correction filed for Transport Dept DOB error (RGT-2024-002)",
+            hash: "c4d8...1b3f",
+          },
+          {
+            ts: "2024-10-02 16:30:05",
+            type: "RIGHT_RESOLVED",
+            actor: "Kavitha Nair IAS",
+            ev: "Data access RGT-2024-001 resolved — summary via DigiLocker",
+            hash: "d9a2...8e5c",
+          },
+          {
+            ts: "2024-09-15 10:00:00",
+            type: "RIGHT_FILED",
+            actor: "Ramesh Kumar",
+            ev: "Right to Access filed for Revenue Dept land records (RGT-2024-001)",
+            hash: "e1f6...3d4b",
+          },
+          {
+            ts: "2024-03-05 08:45:17",
+            type: "CONSENT_GRANTED",
+            actor: "Ramesh Kumar",
+            ev: "Explicit consent granted to Transport Dept (CNS-2024-003)",
+            hash: "f5c9...2a7d",
+          },
+          {
+            ts: "2024-02-14 12:00:00",
+            type: "CONSENT_GRANTED",
+            actor: "Ramesh Kumar",
+            ev: "Explicit consent granted to Health Dept CGHS (CNS-2024-002)",
+            hash: "g8b4...6f1e",
+          },
+          {
+            ts: "2024-01-20 09:30:00",
+            type: "CONSENT_GRANTED",
+            actor: "Ramesh Kumar",
+            ev: "Explicit consent granted to Revenue Dept (CNS-2024-001)",
+            hash: "h3e7...5c9a",
+          },
+          {
+            ts: "2024-01-15 14:00:00",
+            type: "CONSENT_REVOKED",
+            actor: "Ramesh Kumar",
+            ev: "Consent revoked for Urban Development Dept (CNS-2023-005) — property transferred",
+            hash: "i6d2...8b4f",
+          },
+        ],
+        mgrStats: {
+          total: 1284592,
+          active: 1142344,
+          pending: 2847,
+          rights: 156,
+          deemed: 89423,
+          children: 12034,
+          trend: [
+            85000, 92000, 78000, 105000, 98000, 112000, 124000, 108000, 132000,
+            145000, 138000, 152000,
+          ],
+          depts: {
+            Revenue: 287432,
+            Health: 234891,
+            Transport: 198234,
+            Education: 167823,
+            "Social Welfare": 143221,
+            "Urban Dev.": 89432,
+            Labour: 76234,
+            Others: 87325,
+          },
+        },
+      };
+
+      const EXTRA_RIGHTS = [
+        {
+          id: "RGT-2024-004",
+          cit: "Priya Rawat",
+          type: "erasure",
+          tn: "Right to Erasure",
+          sec: "Section 12(b)",
+          status: "pending",
+          dept: "Health Department",
+          filed: "2024-10-30",
+          dl: "2024-11-29",
+          desc: "Erasure of outdated medical consultation records from 2018",
+          res: null,
+        },
+        {
+          id: "RGT-2024-005",
+          cit: "Mohan Lal Verma",
+          type: "access",
+          tn: "Right to Access",
+          sec: "Section 11",
+          status: "pending",
+          dept: "Revenue Department",
+          filed: "2024-11-01",
+          dl: "2024-12-01",
+          desc: "All personal data processed for land records 2020–2024",
+          res: null,
+        },
+      ];
+
+      // ======================== STATE ========================
+      let S = { role: "principal", activeView: "dashboard", charts: {} };
+
+      const NAVS = {
+        principal: [
+          {
+            lbl: "Overview",
+            items: [
+              {
+                id: "dashboard",
+                ic: "ti-layout-dashboard",
+                lbl: "My Dashboard",
+              },
+              { id: "consents", ic: "ti-checkbox", lbl: "My Consents" },
+              {
+                id: "pending",
+                ic: "ti-clock",
+                lbl: "Pending Requests",
+                badge: 1,
+              },
+            ],
+          },
+          {
+            lbl: "My Rights (DPDP)",
+            items: [
+              { id: "rights", ic: "ti-scale", lbl: "My Rights" },
+              {
+                id: "my-requests",
+                ic: "ti-file-description",
+                lbl: "Rights Requests",
+                badge: 2,
+              },
+            ],
+          },
+          {
+            lbl: "Account",
+            items: [
+              { id: "nominee", ic: "ti-user-plus", lbl: "Nominee Management" },
+              { id: "history", ic: "ti-history", lbl: "Audit History" },
+            ],
+          },
+        ],
+        manager: [
+          {
+            lbl: "Command Centre",
+            items: [
+              {
+                id: "dashboard",
+                ic: "ti-layout-dashboard",
+                lbl: "Analytics Dashboard",
+              },
+              { id: "registry", ic: "ti-database", lbl: "Consent Registry" },
+            ],
+          },
+          {
+            lbl: "Consent Management",
+            items: [
+              { id: "notices", ic: "ti-file-text", lbl: "Notice Management" },
+              {
+                id: "deemed",
+                ic: "ti-building-government",
+                lbl: "Deemed Consent (§7)",
+              },
+              {
+                id: "children",
+                ic: "ti-mood-kid",
+                lbl: "Children's Data (§9)",
+              },
+            ],
+          },
+          {
+            lbl: "Rights & Compliance",
+            items: [
+              {
+                id: "rights-mgmt",
+                ic: "ti-scale",
+                lbl: "Rights Requests",
+                badge: 5,
+              },
+              {
+                id: "compliance",
+                ic: "ti-certificate",
+                lbl: "DPDP Compliance",
+              },
+              { id: "audit", ic: "ti-shield-check", lbl: "Audit Log" },
+            ],
+          },
+          {
+            lbl: "Reports",
+            items: [
+              { id: "reports", ic: "ti-report", lbl: "Reports & Analytics" },
+            ],
+          },
+        ],
+        dpo: [
+          {
+            lbl: "DPO Dashboard",
+            items: [
+              {
+                id: "dashboard",
+                ic: "ti-layout-dashboard",
+                lbl: "DPO Overview",
+              },
+              {
+                id: "compliance",
+                ic: "ti-certificate",
+                lbl: "Compliance Monitor",
+              },
+            ],
+          },
+          {
+            lbl: "Oversight",
+            items: [
+              { id: "audit", ic: "ti-shield-check", lbl: "Audit Log" },
+              { id: "reports", ic: "ti-report", lbl: "Reports" },
+            ],
+          },
+        ],
+        fiduciary: [
+          {
+            lbl: "Fiduciary Panel",
+            items: [
+              {
+                id: "dashboard",
+                ic: "ti-layout-dashboard",
+                lbl: "Department Dashboard",
+              },
+              { id: "notices", ic: "ti-file-text", lbl: "My Notices" },
+            ],
+          },
+          {
+            lbl: "Data Management",
+            items: [
+              { id: "registry", ic: "ti-database", lbl: "Consent Registry" },
+              { id: "rights-mgmt", ic: "ti-scale", lbl: "Rights Requests" },
+            ],
+          },
+        ],
+      };
+
+      const ROLE_LABELS = {
+        principal: "Data Principal",
+        manager: "Consent Manager",
+        dpo: "Data Protection Officer",
+        fiduciary: "Data Fiduciary",
+      };
+      const ROLE_USERS = {
+        principal: { name: "Ramesh Kumar Singh", ico: "ti-user" },
+        manager: {
+          name: "Smt. Kavitha Nair, IAS",
+          ico: "ti-building-community",
+        },
+        dpo: { name: "Shri Anil Joshi (DPO)", ico: "ti-certificate" },
+        fiduciary: { name: "Revenue Dept., Dehradun", ico: "ti-building-bank" },
+      };
+
+      let selRoleVal = "principal";
+      function selRole(r, el) {
+        selRoleVal = r;
+        document
+          .querySelectorAll(".rc")
+          .forEach((c) => c.classList.remove("sel"));
+        el.classList.add("sel");
+      }
+
+      function doLogin() {
+        S.role = selRoleVal;
+        document.getElementById("login").style.display = "none";
+        document.getElementById("app").classList.add("vis");
+        setupSb();
+        goTo("dashboard");
+      }
+
+      function doLogout() {
+        document.getElementById("app").classList.remove("vis");
+        document.getElementById("login").style.display = "flex";
+        killCharts();
+      }
+
+      function setupSb() {
+        const u = ROLE_USERS[S.role];
+        document.getElementById("sb-name").textContent = u.name;
+        document.getElementById("sb-role").textContent = ROLE_LABELS[S.role];
+        document.getElementById("sb-ico").className = "ti " + u.ico;
+        const rb = document.getElementById("tb-rbadge");
+        rb.textContent = ROLE_LABELS[S.role];
+        rb.className = "role-badge rb-" + S.role;
+        const nav = document.getElementById("sb-nav");
+        const secs = NAVS[S.role] || NAVS.principal;
+        nav.innerHTML = secs
+          .map(
+            (s) => `
+    <div class="nav-lbl">${s.lbl}</div>
+    ${s.items
+      .map(
+        (i) => `
+    <div class="ni" id="ni-${i.id}" onclick="goTo('${i.id}')">
+      <i class="ti ${i.ic}"></i><span>${i.lbl}</span>
+      ${i.badge ? `<span class="nb">${i.badge}</span>` : ""}
+    </div>`,
+      )
+      .join("")}`,
+          )
+          .join("");
+      }
+
+      function goTo(v) {
+        S.activeView = v;
+        document
+          .querySelectorAll(".ni")
+          .forEach((n) => n.classList.remove("active"));
+        const el = document.getElementById("ni-" + v);
+        if (el) el.classList.add("active");
+        render(v);
+      }
+
+      const TITLES = {
+        dashboard: (r) =>
+          r === "principal" ? "My Consent Dashboard" : "Analytics Dashboard",
+        consents: () => "My Active Consents",
+        pending: () => "Pending Consent Requests",
+        rights: () => "My DPDP Rights",
+        "my-requests": () => "My Rights Requests",
+        nominee: () => "Nominee Management (§14)",
+        history: () => "Audit History",
+        registry: () => "Consent Registry",
+        notices: () => "Notice Management",
+        deemed: () => "Deemed Consent Tracker (§7)",
+        children: () => "Children's Data Protection (§9)",
+        "rights-mgmt": () => "Rights Requests Management",
+        compliance: () => "DPDP Compliance Dashboard",
+        audit: () => "Audit Log",
+        reports: () => "Reports & Analytics",
+      };
+
+      function render(v) {
+        killCharts();
+        const t = TITLES[v] ? TITLES[v](S.role) : "Dashboard";
+        document.getElementById("tb-title").textContent = t;
+        const c = document.getElementById("content");
+        const r = S.role;
+        if (r === "principal") {
+          const map = {
+            dashboard: vPDash,
+            consents: vConsents,
+            pending: vPending,
+            rights: vRights,
+            "my-requests": vMyReq,
+            nominee: vNominee,
+            history: vHistory,
+          };
+          c.innerHTML = (map[v] || vPDash)();
+        } else {
+          const map = {
+            dashboard: vMDash,
+            registry: vRegistry,
+            notices: vNotices,
+            deemed: vDeemed,
+            children: vChildren,
+            "rights-mgmt": vRightsMgmt,
+            compliance: vCompliance,
+            audit: vAudit,
+            reports: vReports,
+          };
+          c.innerHTML = (map[v] || vMDash)();
+        }
+        setTimeout(() => initCharts(v), 60);
+      }
+
+      function killCharts() {
+        Object.values(S.charts).forEach((c) => {
+          try {
+            c.destroy();
+          } catch (e) {}
+        });
+        S.charts = {};
+      }
+
+      // ======================== HELPERS ========================
+      function deptIcon(cat) {
+        return (
+          {
+            revenue: "ti-building-bank",
+            health: "ti-stethoscope",
+            edu: "ti-school",
+            transport: "ti-car",
+            welfare: "ti-heart",
+            urban: "ti-building",
+            labour: "ti-tool",
+            police: "ti-shield",
+          }[cat] || "ti-building"
+        );
+      }
+      function evBadge(t) {
+        return (
+          {
+            CONSENT_GRANTED: "b-active",
+            CONSENT_REVOKED: "b-revoked",
+            RIGHT_FILED: "b-info",
+            RIGHT_RESOLVED: "b-active",
+            CORRECTION_REQ: "b-warn",
+          }[t] || "b-pending"
+        );
+      }
+      function noticeRet(id) {
+        const n = D.notices.find((x) => x.id === id);
+        return n ? n.ret : "As per notice";
+      }
+      function noticeTP(id) {
+        const n = D.notices.find((x) => x.id === id);
+        return n ? (n.tp ? "Yes — " + n.tpd : "No") : "Refer notice";
+      }
+      function statusBadge(s) {
+        return (
+          {
+            active: `<span class="badge b-active"><i class="ti ti-circle-dot"></i> Active</span>`,
+            pending: `<span class="badge b-pending"><i class="ti ti-clock"></i> Pending</span>`,
+            revoked: `<span class="badge b-revoked"><i class="ti ti-x"></i> Revoked</span>`,
+            expired: `<span class="badge b-expired">Expired</span>`,
+          }[s] || ""
+        );
+      }
+
+      // ======================== PRINCIPAL VIEWS ========================
+      function vPDash() {
+        const act = D.consents.filter((c) => c.status === "active").length;
+        const pend = D.consents.filter((c) => c.status === "pending").length;
+        const rev = D.consents.filter((c) => c.status === "revoked").length;
+        const expiring = D.consents.filter(
+          (c) => c.status === "active" && c.dl < 60 && c.dl !== null,
+        );
+        return `
+  <div class="cbanner">
+    <i class="ti ti-shield-check"></i>
+    <div><h3>Your data is protected under DPDP Act 2023</h3><p>You have full control over your personal data. Review, manage, and revoke consents at any time. Rights guaranteed under Sections 11–14.</p></div>
+    <div class="cscore"><div class="sv">${act}</div><div class="sl">Active Consents</div></div>
+  </div>
+  <div class="mgrid">
+    <div class="mc-card"><div class="mc-lbl" style="color:var(--teal)"><i class="ti ti-checkbox" style="color:var(--teal)"></i> Active Consents</div><div class="mc-val" style="color:var(--teal)">${act}</div><div class="mc-ch">Across ${act} departments</div></div>
+    <div class="mc-card"><div class="mc-lbl"><i class="ti ti-clock" style="color:var(--warn)"></i> Pending Approval</div><div class="mc-val" style="color:var(--warn)">${pend}</div><div class="mc-ch">Awaiting your decision</div></div>
+    <div class="mc-card"><div class="mc-lbl"><i class="ti ti-scale" style="color:var(--indigo)"></i> Rights Requests</div><div class="mc-val" style="color:var(--indigo)">${D.rights.length}</div><div class="mc-ch">1 resolved, 2 active</div></div>
+    <div class="mc-card"><div class="mc-lbl"><i class="ti ti-x" style="color:var(--danger)"></i> Revoked</div><div class="mc-val" style="color:var(--danger)">${rev}</div><div class="mc-ch">By you this year</div></div>
+  </div>
+  ${expiring.length ? `<div class="alert a-warn"><i class="ti ti-alert-triangle"></i><div><strong>${expiring.length} consent(s) expiring soon:</strong> ${expiring.map((c) => `<strong>${c.dept}</strong> (${c.dl} days left)`).join(", ")}. Review and renew if still needed.</div></div>` : ""}
+  <div class="g2" style="margin-bottom:1.4rem">
+    <div class="card">
+      <div class="ch"><div class="ct"><i class="ti ti-chart-donut"></i> Consent by Department</div></div>
+      <div class="cb">
+        <div style="position:relative;height:200px">
+          <canvas id="cDonut" role="img" aria-label="Consent distribution by department">Active consents across Revenue, Health, Transport, Social Welfare.</canvas>
+          <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none">
+            <div style="font-size:24px;font-weight:900;color:var(--tx1)">${act}</div>
+            <div style="font-size:11px;color:var(--txm)">Active</div>
+          </div>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:12px;justify-content:center;font-size:11px">
+          ${[
+            ["Revenue", "#C9A227"],
+            ["Health", "#0D5F5A"],
+            ["Transport", "#1B3D6F"],
+            ["Social Welfare", "#4338CA"],
+          ]
+            .map(
+              ([l, c]) =>
+                `<span style="display:flex;align-items:center;gap:4px"><span style="width:9px;height:9px;border-radius:2px;background:${c};display:inline-block"></span>${l}</span>`,
+            )
+            .join("")}
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ch"><div class="ct"><i class="ti ti-history"></i> Recent Activity</div></div>
+      <div class="cb" style="padding:.9rem">
+        <ul class="tl">
+          ${D.audit
+            .slice(0, 5)
+            .map((log) => {
+              const dc =
+                log.type === "CONSENT_GRANTED"
+                  ? "g"
+                  : log.type === "CONSENT_REVOKED"
+                    ? "r"
+                    : log.type === "RIGHT_RESOLVED"
+                      ? "b"
+                      : "a";
+              const ic =
+                log.type === "CONSENT_GRANTED"
+                  ? "ti-check"
+                  : log.type === "CONSENT_REVOKED"
+                    ? "ti-x"
+                    : log.type === "RIGHT_RESOLVED"
+                      ? "ti-shield-check"
+                      : "ti-file";
+              return `<li class="tli"><div class="td ${dc}"><i class="ti ${ic}"></i></div><div><div class="tc-t">${log.type
+                .replace(/_/g, " ")
+                .toLowerCase()
+                .replace(/\b\w/g, (l) =>
+                  l.toUpperCase(),
+                )}</div><div class="tc-d">${log.ev.substring(0, 58)}…</div><div class="tc-ts">${log.ts}</div></div></li>`;
+            })
+            .join("")}
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="ch"><div class="ct"><i class="ti ti-checkbox"></i> Active Consents Overview</div><button class="btn btn-outline btn-sm" onclick="goTo('consents')">View All <i class="ti ti-arrow-right"></i></button></div>
+    <div class="tw"><table>
+      <thead><tr><th>Department</th><th>Purpose</th><th>Type</th><th>Granted</th><th>Expires</th><th>Status</th><th>Actions</th></tr></thead>
+      <tbody>
+        ${D.consents
+          .filter((c) => c.status === "active")
+          .map(
+            (c) => `<tr>
+          <td><div style="display:flex;align-items:center;gap:7px"><div class="d-${c.cat}" style="width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px"><i class="ti ${deptIcon(c.cat)}"></i></div><strong>${c.dept}</strong></div></td>
+          <td style="max-width:180px;font-size:12px">${c.purpose}</td>
+          <td>${c.type === "deemed" ? '<span class="badge b-deemed"><i class="ti ti-building-government"></i> §7 Deemed</span>' : '<span class="badge b-explicit"><i class="ti ti-checkbox"></i> Explicit</span>'}</td>
+          <td style="font-size:12px">${c.gd}</td>
+          <td><span style="font-size:12px${c.dl < 60 ? ";color:var(--warn);font-weight:700" : ""}">${c.exp}</span>${c.dl < 60 ? `<div style="font-size:10px;color:var(--warn)">${c.dl} days left</div>` : ""}</td>
+          <td><span class="badge b-active"><i class="ti ti-circle-dot"></i> Active</span></td>
+          <td><div style="display:flex;gap:4px"><button class="ab ab-v" onclick="viewC('${c.id}')"><i class="ti ti-eye"></i> View</button>${c.type !== "deemed" ? `<button class="ab ab-rv" onclick="revokeC('${c.id}')"><i class="ti ti-x"></i> Revoke</button>` : ""}</div></td>
+        </tr>`,
+          )
+          .join("")}
+      </tbody>
+    </table></div>
+  </div>`;
+      }
+
+      function vConsents() {
+        return `
+  <div class="ph"><div><h1>My Consents</h1><p>All consents under DPDP Act 2023 Section 6 — granted, revoked, or awaiting your decision</p></div><div class="ph-actions"><button class="btn btn-outline btn-sm"><i class="ti ti-download"></i> Export</button></div></div>
+  <div class="alert a-info"><i class="ti ti-info-circle"></i><div>Under <strong>Section 6 of DPDP Act 2023</strong>, your consent must be free, specific, informed, unconditional and unambiguous. You have the right to withdraw consent at any time.</div></div>
+  <div class="fbar">
+    <div class="si"><i class="ti ti-search"></i><input type="text" placeholder="Search department, purpose…"></div>
+    <select class="fsel"><option value="">All Status</option><option>Active</option><option>Pending</option><option>Revoked</option></select>
+    <select class="fsel"><option value="">All Types</option><option>Explicit</option><option>Deemed (§7)</option></select>
+  </div>
+  <div class="card"><div class="tw"><table>
+    <thead><tr><th>Consent ID</th><th>Department</th><th>Purpose</th><th>Data Elements</th><th>Type</th><th>Status</th><th>Validity</th><th>Actions</th></tr></thead>
+    <tbody>
+      ${D.consents
+        .map(
+          (c) => `<tr>
+        <td><code>${c.id}</code></td>
+        <td><div style="display:flex;align-items:center;gap:7px"><div class="d-${c.cat}" style="width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px"><i class="ti ${deptIcon(c.cat)}"></i></div><div><div style="font-weight:700;font-size:12.5px">${c.dept}</div><div style="font-size:10.5px;color:var(--txm)">${c.ntc}</div></div></div></td>
+        <td style="font-size:12px;max-width:165px">${c.purpose}</td>
+        <td><div style="font-size:11px;color:var(--txm)">${c.de.length} elements</div><div style="font-size:10.5px;color:var(--txm)">${c.de.slice(0, 2).join(", ")}${c.de.length > 2 ? "…" : ""}</div></td>
+        <td>${c.type === "deemed" ? '<span class="badge b-deemed">§7 Deemed</span>' : '<span class="badge b-explicit">Explicit</span>'}</td>
+        <td>${statusBadge(c.status)}</td>
+        <td>${c.gd ? `<div style="font-size:12px"><b>From:</b> ${c.gd}</div><div style="font-size:12px"><b>To:</b> ${c.exp}</div>${c.dl > 0 ? `<div style="font-size:10.5px;color:${c.dl < 60 ? "var(--warn)" : "var(--txm)"}">${c.dl} days left</div>` : ""}` : c.status === "pending" ? `<div style="font-size:12px;color:var(--warn)">Awaiting consent</div><div style="font-size:10.5px;color:var(--txm)">Requested: ${c.reqd}</div>` : `<div style="font-size:12px;color:var(--danger)">Revoked: ${c.rd}</div>`}</td>
+        <td><div style="display:flex;gap:4px;flex-wrap:wrap">
+          <button class="ab ab-v" onclick="viewC('${c.id}')"><i class="ti ti-eye"></i> View</button>
+          ${c.status === "active" && c.type !== "deemed" ? `<button class="ab ab-rv" onclick="revokeC('${c.id}')"><i class="ti ti-x"></i> Revoke</button>` : ""}
+          ${c.status === "pending" ? `<button class="ab ab-ok" onclick="grantC('${c.id}')"><i class="ti ti-check"></i> Grant</button><button class="ab ab-rv" onclick="denyC('${c.id}')">Deny</button>` : ""}
+        </div></td>
+      </tr>`,
+        )
+        .join("")}
+    </tbody>
+  </table></div></div>`;
+      }
+
+      function vPending() {
+        const p = D.consents.filter((c) => c.status === "pending");
+        return `
+  <div class="ph"><div><h1>Pending Consent Requests</h1><p>Government departments requesting your consent to process your personal data</p></div></div>
+  <div class="alert a-warn"><i class="ti ti-info-circle"></i><div>You have <strong>${p.length} pending request(s)</strong>. Read the Notice carefully before granting consent. Under §6 you must receive clear Notice before any consent is collected.</div></div>
+  ${p
+    .map(
+      (c) => `
+  <div class="crc">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px">
+      <div style="display:flex;align-items:flex-start;gap:12px">
+        <div class="d-${c.cat}" style="width:44px;height:44px;border-radius:10px;font-size:22px;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ${deptIcon(c.cat)}"></i></div>
+        <div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px"><strong style="font-size:14.5px">${c.dept}</strong><span class="sec-tag">DPDP §6</span></div>
+          <div style="font-size:12.5px;color:var(--tx2);margin-bottom:7px">${c.purpose}</div>
+          <div style="font-size:11.5px;color:var(--txm);margin-bottom:9px">Requested: ${c.reqd} · Notice: ${c.ntc}</div>
+          <div class="sdiv" style="margin:6px 0"><h3>Data Elements Requested</h3></div>
+          <div class="chips">${c.de.map((el) => `<span class="chip">${el}</span>`).join("")}</div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:7px;flex-shrink:0">
+        <button class="btn btn-teal btn-sm" onclick="grantC('${c.id}')"><i class="ti ti-check"></i> Grant Consent</button>
+        <button class="btn btn-outline btn-sm" onclick="viewNotice('${c.ntc}')"><i class="ti ti-file-text"></i> View Notice</button>
+        <button class="btn btn-outline btn-sm" style="color:var(--danger);border-color:var(--danger)" onclick="denyC('${c.id}')"><i class="ti ti-x"></i> Deny</button>
+      </div>
+    </div>
+    <div style="margin-top:11px;padding-top:11px;border-top:1px solid var(--bdr)">
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;font-size:12px">
+        <div><span style="color:var(--txm)">Retention:</span><br><strong>${noticeRet(c.ntc)}</strong></div>
+        <div><span style="color:var(--txm)">Third Party:</span><br><strong>${noticeTP(c.ntc)}</strong></div>
+        <div><span style="color:var(--txm)">Withdrawal:</span><br><strong>Allowed any time</strong></div>
+      </div>
+    </div>
+  </div>`,
+    )
+    .join("")}
+  ${!p.length ? `<div class="card"><div class="cb" style="text-align:center;padding:3rem"><i class="ti ti-circle-check" style="font-size:48px;color:var(--success);display:block;margin-bottom:12px"></i><div style="font-size:15px;font-weight:700">No pending requests</div><div style="font-size:12.5px;color:var(--txm);margin-top:4px">All consent requests have been actioned</div></div></div>` : ""}`;
+      }
+
+      function vRights() {
+        const items = [
+          {
+            type: "access",
+            ico: "ti-eye",
+            bg: "#EEF2FF",
+            cl: "#4338CA",
+            name: "Right to Access",
+            sec: "Section 11, DPDP Act 2023",
+            desc: "Know what personal data is being processed, for what purpose, and by whom.",
+          },
+          {
+            type: "correction",
+            ico: "ti-edit",
+            bg: "#F0FDF4",
+            cl: "#16A34A",
+            name: "Right to Correction",
+            sec: "Section 12(a), DPDP Act 2023",
+            desc: "Correct inaccurate or incomplete personal data held by a Data Fiduciary.",
+          },
+          {
+            type: "erasure",
+            ico: "ti-trash",
+            bg: "#FEF2F2",
+            cl: "#DC2626",
+            name: "Right to Erasure",
+            sec: "Section 12(b), DPDP Act 2023",
+            desc: "Request erasure of personal data when no longer necessary for its original purpose.",
+          },
+          {
+            type: "grievance",
+            ico: "ti-message-report",
+            bg: "#FFFBEB",
+            cl: "#D97706",
+            name: "Grievance Redressal",
+            sec: "Section 13, DPDP Act 2023",
+            desc: "File a grievance against a Data Fiduciary. Response mandated within 30 days.",
+          },
+          {
+            type: "nominate",
+            ico: "ti-user-plus",
+            bg: "#E6F5F4",
+            cl: "#0D5F5A",
+            name: "Right to Nominate",
+            sec: "Section 14, DPDP Act 2023",
+            desc: "Nominate a person to exercise your rights in case of death or incapacity.",
+          },
+          {
+            type: "track",
+            ico: "ti-list-check",
+            bg: "#FDF6E3",
+            cl: "#C9A227",
+            name: "Track Requests",
+            sec: "All active & resolved",
+            desc: "Track status of filed rights requests. View resolutions and escalate if needed.",
+          },
+        ];
+        return `
+  <div class="ph"><div><h1>My DPDP Rights</h1><p>Your guaranteed rights under Digital Personal Data Protection Act 2023</p></div></div>
+  <div class="rgrid">
+    ${items
+      .map(
+        (i) => `
+    <div class="rcard" onclick="${i.type === "nominate" ? "goTo('nominee')" : i.type === "track" ? "goTo('my-requests')" : `fileRight('${i.type}')`}">
+      <div class="ri-wrap" style="background:${i.bg};color:${i.cl}"><i class="ti ${i.ico}"></i></div>
+      <div><div class="rn">${i.name}</div><div class="rs">${i.sec}</div></div>
+      <div class="rdesc">${i.desc}</div>
+      <button class="btn btn-outline btn-sm" style="width:100%">${i.type === "nominate" ? "Manage Nominee" : i.type === "track" ? "View Requests" : "File Request"} <i class="ti ti-arrow-right"></i></button>
+    </div>`,
+      )
+      .join("")}
+  </div>
+  <div class="sdiv"><h3>How to Exercise Your Rights</h3></div>
+  <div class="card"><div class="cb">
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;text-align:center">
+      ${[
+        {
+          n: "1",
+          ic: "ti-select",
+          t: "Select Right",
+          d: "Choose the right you want to exercise from the cards above",
+        },
+        {
+          n: "2",
+          ic: "ti-file-description",
+          t: "File Request",
+          d: "Fill in the request form with the department and details",
+        },
+        {
+          n: "3",
+          ic: "ti-clock",
+          t: "30-Day Window",
+          d: "Fiduciary must respond within 30 days as per DPDP Act §13",
+        },
+        {
+          n: "4",
+          ic: "ti-shield-check",
+          t: "Resolution",
+          d: "Receive resolution or escalate to Data Protection Board of India",
+        },
+      ]
+        .map(
+          (s) => `<div>
+        <div style="width:42px;height:42px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-size:17px;margin:0 auto 9px"><i class="ti ${s.ic}"></i></div>
+        <div style="font-size:13px;font-weight:800;margin-bottom:4px">${s.n}. ${s.t}</div>
+        <div style="font-size:11.5px;color:var(--txm)">${s.d}</div>
+      </div>`,
+        )
+        .join("")}
+    </div>
+  </div></div>`;
+      }
+
+      function vMyReq() {
+        return `
+  <div class="ph"><div><h1>My Rights Requests</h1><p>Track all your DPDP rights requests and their resolution status</p></div><div class="ph-actions"><button class="btn btn-teal btn-sm" onclick="fileRight('access')"><i class="ti ti-plus"></i> New Request</button></div></div>
+  <div class="card"><div class="tw"><table>
+    <thead><tr><th>Request ID</th><th>Right Type</th><th>Department</th><th>Filed</th><th>Deadline (30d)</th><th>Status</th><th>Resolution</th><th>Actions</th></tr></thead>
+    <tbody>
+      ${D.rights
+        .map((r) => {
+          const dl = Math.ceil(
+            (new Date(r.dl) - new Date("2024-11-06")) / 864e5,
+          );
+          return `<tr>
+          <td><code>${r.id}</code></td>
+          <td><div style="font-weight:700;font-size:12.5px">${r.tn}</div><div style="font-size:10.5px;color:var(--txm)">${r.sec}</div></td>
+          <td>${r.dept}</td>
+          <td style="font-size:12px">${r.filed}</td>
+          <td><div style="font-size:12px">${r.dl}</div><div style="font-size:10.5px;font-weight:700;color:${dl < 7 ? "var(--danger)" : dl < 14 ? "var(--warn)" : "var(--success)"}">${dl > 0 ? dl + "d left" : "OVERDUE"}</div></td>
+          <td><span class="badge ss-${r.status === "resolved" ? "r" : r.status === "processing" ? "g" : r.status === "pending" ? "p" : "rj"}">${r.status.charAt(0).toUpperCase() + r.status.slice(1)}</span></td>
+          <td style="font-size:12px;max-width:180px">${r.res || `<span style="color:var(--txm)">Awaiting resolution</span>`}</td>
+          <td><div style="display:flex;flex-direction:column;gap:4px">
+            <button class="ab ab-v" onclick="viewRight('${r.id}')"><i class="ti ti-eye"></i> View</button>
+            ${r.status !== "resolved" ? `<button class="ab ab-pr" onclick="toast('Escalation initiated for '+r.id)"><i class="ti ti-arrow-up"></i> Escalate</button>` : ""}
+          </div></td>
+        </tr>`;
+        })
+        .join("")}
+    </tbody>
+  </table></div></div>
+  <div class="alert a-info" style="margin-top:1rem"><i class="ti ti-info-circle"></i><div>If a Data Fiduciary fails to respond within 30 days, escalate to the <strong>Data Protection Board of India</strong>. Contact: dpboard@meity.gov.in</div></div>`;
+      }
+
+      function vNominee() {
+        return `
+  <div class="ph"><div><h1>Nominee Management</h1><p>Section 14, DPDP Act 2023 — Nominate a person to exercise your rights</p></div></div>
+  <div class="alert a-info"><i class="ti ti-info-circle"></i><div>Under <strong>Section 14</strong> of DPDP Act 2023, you may nominate any individual who shall, in the event of your death or incapacity, exercise your data rights under this Act.</div></div>
+  <div class="card" style="max-width:560px">
+    <div class="ch"><div class="ct"><i class="ti ti-user-plus"></i> Current Nominee</div><span class="badge b-active">Nominated</span></div>
+    <div class="cb">
+      <div style="display:flex;align-items:center;gap:13px;margin-bottom:1.2rem">
+        <div style="width:50px;height:50px;border-radius:50%;background:var(--teal3);color:var(--teal);display:flex;align-items:center;justify-content:center;font-size:23px"><i class="ti ti-user"></i></div>
+        <div><div style="font-size:16px;font-weight:800">Smt. Rekha Singh</div><div style="font-size:12.5px;color:var(--tx2)">Spouse · XXXX-XXXX-5678</div></div>
+      </div>
+      <div class="dr"><div class="dl">Relationship</div><div class="dv">Spouse</div></div>
+      <div class="dr"><div class="dl">Aadhaar (masked)</div><div class="dv">XXXX-XXXX-5678</div></div>
+      <div class="dr"><div class="dl">Mobile</div><div class="dv">+91 98XX-XXXXXX</div></div>
+      <div class="dr"><div class="dl">Nominated On</div><div class="dv">2024-01-20</div></div>
+      <div class="dr"><div class="dl">Scope</div><div class="dv">All rights under DPDP Act 2023 (Sections 11–13)</div></div>
+      <div style="display:flex;gap:8px;margin-top:1rem">
+        <button class="btn btn-outline btn-sm"><i class="ti ti-edit"></i> Update Nominee</button>
+        <button class="btn btn-outline btn-sm" style="color:var(--danger)"><i class="ti ti-trash"></i> Remove Nominee</button>
+      </div>
+    </div>
+  </div>`;
+      }
+
+      function vHistory() {
+        return `
+  <div class="ph"><div><h1>My Audit History</h1><p>Immutable cryptographic record of all consent actions and rights exercises</p></div><div class="ph-actions"><button class="btn btn-outline btn-sm"><i class="ti ti-download"></i> Download Report</button></div></div>
+  <div class="alert a-ok"><i class="ti ti-shield-check"></i><div>All entries are SHA-256 hashed and stored on the <strong>NIC Blockchain Network</strong> — tamper-proof immutable audit trail per DPDP Act §8(7).</div></div>
+  <div class="card">
+    <div class="ch"><div class="ct"><i class="ti ti-history"></i> Complete Activity Log</div></div>
+    <div class="cb" style="padding:0 1.2rem">
+      <div style="display:grid;grid-template-columns:150px 140px 1fr 100px;gap:8px;padding:9px 0;border-bottom:2px solid var(--bdr);font-size:10.5px;font-weight:800;color:var(--txm);text-transform:uppercase;letter-spacing:.5px">
+        <span>Timestamp</span><span>Event</span><span>Description</span><span>Hash</span>
+      </div>
+      ${D.audit
+        .map(
+          (a) => `
+      <div style="display:grid;grid-template-columns:150px 140px 1fr 100px;gap:8px;padding:11px 0;border-bottom:1px solid var(--bdr);align-items:center">
+        <div style="font-size:10.5px;font-family:monospace;color:var(--txm)">${a.ts}</div>
+        <div><span class="badge ${evBadge(a.type)}" style="font-size:10px">${a.type.replace(/_/g, " ")}</span></div>
+        <div style="font-size:11.5px;color:var(--tx2)">${a.ev}</div>
+        <div style="font-size:10px;font-family:monospace;color:var(--txm)">${a.hash}</div>
+      </div>`,
+        )
+        .join("")}
+    </div>
+  </div>`;
+      }
+
+      // ======================== MANAGER VIEWS ========================
+      function vMDash() {
+        const s = D.mgrStats;
+        return `
+  <div class="cbanner">
+    <i class="ti ti-chart-line"></i>
+    <div><h3>Uttarakhand DPDP Consent Registry — Live Analytics</h3><p>State-wide consent management covering 13 departments and 1.28+ crore registered citizens</p></div>
+    <div class="cscore"><div class="sv">96.2%</div><div class="sl">Compliance Score</div></div>
+  </div>
+  <div class="mgrid">
+    <div class="mc-card"><div class="mc-lbl"><i class="ti ti-users" style="color:var(--teal)"></i> Total Consents</div><div class="mc-val">${(s.total / 100000).toFixed(1)}L</div><div class="mc-ch up"><i class="ti ti-trending-up"></i> +12.4% this quarter</div></div>
+    <div class="mc-card"><div class="mc-lbl"><i class="ti ti-checkbox" style="color:var(--success)"></i> Active</div><div class="mc-val" style="color:var(--success)">${(s.active / 100000).toFixed(1)}L</div><div class="mc-ch">89.0% of total</div></div>
+    <div class="mc-card"><div class="mc-lbl"><i class="ti ti-clock" style="color:var(--warn)"></i> Pending</div><div class="mc-val" style="color:var(--warn)">${s.pending.toLocaleString()}</div><div class="mc-ch dn"><i class="ti ti-trending-down"></i> −5.2% this week</div></div>
+    <div class="mc-card"><div class="mc-lbl"><i class="ti ti-scale" style="color:var(--indigo)"></i> Rights Requests</div><div class="mc-val" style="color:var(--indigo)">${s.rights}</div><div class="mc-ch" style="color:var(--danger)">5 overdue >30d</div></div>
+    <div class="mc-card"><div class="mc-lbl"><i class="ti ti-building-government"></i> Deemed (§7)</div><div class="mc-val">${(s.deemed / 1000).toFixed(1)}K</div><div class="mc-ch">6.9% of total</div></div>
+    <div class="mc-card"><div class="mc-lbl"><i class="ti ti-mood-kid" style="color:var(--danger)"></i> Children (§9)</div><div class="mc-val" style="color:var(--danger)">${(s.children / 1000).toFixed(1)}K</div><div class="mc-ch">Parental consent req'd</div></div>
+  </div>
+  <div class="g2" style="margin-bottom:1.4rem">
+    <div class="card">
+      <div class="ch"><div class="ct"><i class="ti ti-chart-bar"></i> Consents by Department</div><button class="btn btn-outline btn-sm" onclick="goTo('registry')">Full Registry</button></div>
+      <div class="cb"><div style="position:relative;height:250px"><canvas id="deptBar" role="img" aria-label="Bar chart of consent counts by department">Consent counts across 8 departments.</canvas></div></div>
+    </div>
+    <div class="card">
+      <div class="ch"><div class="ct"><i class="ti ti-chart-line"></i> Monthly Consent Trend 2024</div></div>
+      <div class="cb"><div style="position:relative;height:250px"><canvas id="trendLine" role="img" aria-label="Line chart of monthly consent trend for 2024">Monthly trends from January to December 2024.</canvas></div></div>
+    </div>
+  </div>
+  <div class="g2">
+    <div class="card">
+      <div class="ch"><div class="ct"><i class="ti ti-chart-donut"></i> Consent Type Distribution</div></div>
+      <div class="cb">
+        <div style="display:flex;gap:14px;align-items:center">
+          <div style="position:relative;height:155px;width:155px;flex-shrink:0">
+            <canvas id="typeDonut" role="img" aria-label="Pie chart of consent type distribution">Explicit 84.4%, Deemed 6.9%, Children 0.9%, Pending 7.8%.</canvas>
+          </div>
+          <div style="flex:1">
+            ${[
+              ["Explicit (§6)", 84.4, "#0D5F5A"],
+              ["Deemed (§7)", 6.9, "#4338CA"],
+              ["Child Consent (§9)", 0.9, "#DC2626"],
+              ["Pending", 7.8, "#D97706"],
+            ]
+              .map(
+                ([l, p, c]) => `
+            <div style="margin-bottom:9px">
+              <div style="display:flex;justify-content:space-between;margin-bottom:3px">
+                <span style="font-size:11.5px;display:flex;align-items:center;gap:5px"><span style="width:9px;height:9px;border-radius:2px;background:${c};display:inline-block"></span>${l}</span>
+                <span style="font-size:12px;font-weight:800">${p}%</span>
+              </div>
+              <div class="pbar"><div class="pfill" style="width:${p}%;background:${c}"></div></div>
+            </div>`,
+              )
+              .join("")}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ch"><div class="ct"><i class="ti ti-alert-triangle"></i> Action Required</div><span class="badge b-warn">5 Items</span></div>
+      <div class="cb" style="padding:.7rem 1.2rem">
+        ${[
+          {
+            ic: "ti-clock",
+            cl: "var(--danger)",
+            t: "Overdue Rights Requests",
+            d: "5 requests past 30-day deadline — §13 violation risk",
+          },
+          {
+            ic: "ti-file-text",
+            cl: "var(--warn)",
+            t: "Notice Update Required",
+            d: "Education Dept. notice NTC-EDU-006 needs revision",
+          },
+          {
+            ic: "ti-mood-kid",
+            cl: "var(--indigo)",
+            t: "Pending Child Verifications",
+            d: "47 parental consent verifications pending §9",
+          },
+          {
+            ic: "ti-certificate",
+            cl: "var(--teal)",
+            t: "Quarterly DPDP Report Due",
+            d: "Q3 2024 compliance report — 5 days left",
+          },
+        ]
+          .map(
+            (a) => `
+        <div style="display:flex;align-items:center;gap:9px;padding:9px 0;border-bottom:1px solid var(--bdr)">
+          <div style="width:33px;height:33px;border-radius:7px;background:${a.cl}18;display:flex;align-items:center;justify-content:center;font-size:16px;color:${a.cl};flex-shrink:0"><i class="ti ${a.ic}"></i></div>
+          <div style="flex:1"><div style="font-size:12.5px;font-weight:700">${a.t}</div><div style="font-size:11px;color:var(--txm)">${a.d}</div></div>
+          <button class="ab ab-v">View</button>
+        </div>`,
+          )
+          .join("")}
+      </div>
+    </div>
+  </div>`;
+      }
+
+      function vRegistry() {
+        return `
+  <div class="ph"><div><h1>Consent Registry</h1><p>State-wide registry — all departments, all citizens, all consent records</p></div><div class="ph-actions"><button class="btn btn-outline btn-sm"><i class="ti ti-download"></i> Export CSV</button><button class="btn btn-teal btn-sm"><i class="ti ti-plus"></i> New Entry</button></div></div>
+  <div class="fbar">
+    <div class="si"><i class="ti ti-search"></i><input type="text" placeholder="Search by Aadhaar, name, department, consent ID…"></div>
+    <select class="fsel"><option value="">All Departments</option><option>Revenue</option><option>Health</option><option>Transport</option><option>Education</option><option>Social Welfare</option></select>
+    <select class="fsel"><option value="">All Status</option><option>Active</option><option>Pending</option><option>Revoked</option></select>
+    <select class="fsel"><option value="">All Types</option><option>Explicit (§6)</option><option>Deemed (§7)</option></select>
+  </div>
+  <div class="card">
+    <div class="ch"><div style="font-size:12px;color:var(--txm)">Showing <strong>12,84,592</strong> records · Filtered: All</div><button class="btn btn-outline btn-sm" style="margin-left:auto"><i class="ti ti-refresh"></i> Refresh</button></div>
+    <div class="tw"><table>
+      <thead><tr><th><input type="checkbox"></th><th>Consent ID</th><th>Citizen</th><th>Department</th><th>Purpose</th><th>Type</th><th>Status</th><th>Granted</th><th>Expires</th><th>Actions</th></tr></thead>
+      <tbody>
+        ${D.consents
+          .map(
+            (c) => `<tr>
+          <td><input type="checkbox"></td>
+          <td><code>${c.id}</code></td>
+          <td><div style="font-weight:700;font-size:12.5px">${c.cit}</div><div style="font-size:10.5px;color:var(--txm)">XXXX-XXXX-1234</div></td>
+          <td><div style="display:flex;align-items:center;gap:6px"><div class="d-${c.cat}" style="width:26px;height:26px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px"><i class="ti ${deptIcon(c.cat)}"></i></div><span style="font-size:12.5px">${c.dept}</span></div></td>
+          <td style="font-size:11.5px;max-width:155px">${c.purpose}</td>
+          <td>${c.type === "deemed" ? '<span class="badge b-deemed">§7 Deemed</span>' : '<span class="badge b-explicit">Explicit</span>'}</td>
+          <td>${statusBadge(c.status)}</td>
+          <td style="font-size:12px">${c.gd || "—"}</td>
+          <td style="font-size:12px">${c.exp || "—"}</td>
+          <td><div style="display:flex;gap:4px"><button class="ab ab-v" onclick="viewC('${c.id}')"><i class="ti ti-eye"></i></button><button class="ab ab-pr"><i class="ti ti-edit"></i></button></div></td>
+        </tr>`,
+          )
+          .join("")}
+      </tbody>
+    </table></div>
+    <div style="padding:.9rem 1.2rem;border-top:1px solid var(--bdr);display:flex;align-items:center;justify-content:space-between;font-size:12.5px;color:var(--txm)">
+      <span>Showing 1–6 of 12,84,592 records (representative sample)</span>
+      <div style="display:flex;gap:8px"><button class="btn btn-outline btn-sm">Previous</button><button class="btn btn-outline btn-sm">Next</button></div>
+    </div>
+  </div>`;
+      }
+
+      function vNotices() {
+        return `
+  <div class="ph"><div><h1>Notice Management</h1><p>Create and manage DPDP-compliant notices for consent collection (Section 5)</p></div><div class="ph-actions"><button class="btn btn-teal btn-sm"><i class="ti ti-plus"></i> New Notice</button></div></div>
+  <div class="alert a-info"><i class="ti ti-info-circle"></i><div><strong>Section 5 Compliance:</strong> Every notice must be in plain language, specify the DPO contact, enumerate data elements and processing purpose, state retention period, and disclose third-party sharing. Bilingual notices required (English + Hindi/8th Schedule language).</div></div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:14px">
+    ${D.notices
+      .map(
+        (n) => `
+    <div class="ncard">
+      <div style="display:flex;align-items:flex-start;gap:9px">
+        <div class="d-${n.cat}" style="width:38px;height:38px;border-radius:9px;font-size:19px;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ${deptIcon(n.cat)}"></i></div>
+        <div style="flex:1"><div style="font-size:14px;font-weight:800">${n.dept}</div><div style="font-size:10.5px;color:var(--txm)">${n.id}</div></div>
+        <div>${n.status === "active" ? '<span class="badge b-active">Active</span>' : '<span class="badge b-warn">Review Needed</span>'}</div>
+      </div>
+      <div style="font-size:12.5px;color:var(--tx2)">${n.purpose}</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;font-size:12px">
+        <div><span style="color:var(--txm)">Consents:</span> <strong>${n.cnt.toLocaleString()}</strong></div>
+        <div><span style="color:var(--txm)">Score:</span> <strong style="color:${n.score >= 90 ? "var(--success)" : "var(--warn)"}">${n.score}%</strong></div>
+        <div style="grid-column:1/-1"><span style="color:var(--txm)">Retention:</span> ${n.ret}</div>
+        <div><span style="color:var(--txm)">3rd Party:</span> ${n.tp ? `<span style="color:var(--warn)">Yes</span>` : "No"}</div>
+      </div>
+      <div><div style="font-size:10.5px;font-weight:800;color:var(--txm);margin-bottom:5px">DATA ELEMENTS (${n.de.length})</div><div class="chips">${n.de.map((el) => `<span class="chip">${el}</span>`).join("")}</div></div>
+      <div style="display:flex;gap:6px">
+        <button class="btn btn-outline btn-sm" onclick="viewNotice('${n.id}')"><i class="ti ti-eye"></i> View</button>
+        <button class="btn btn-outline btn-sm"><i class="ti ti-edit"></i> Edit</button>
+        ${n.status === "review" ? `<button class="btn btn-teal btn-sm"><i class="ti ti-refresh"></i> Update</button>` : ""}
+      </div>
+    </div>`,
+      )
+      .join("")}
+  </div>`;
+      }
+
+      function vDeemed() {
+        const grounds = [
+          {
+            id: "7(a)",
+            t: "Performance of State Function",
+            d: "Processing necessary under any law of Parliament or State Legislature",
+            ex: "Welfare schemes, land records, tax filing, voter registration",
+            cnt: 34521,
+          },
+          {
+            id: "7(b)",
+            t: "Compliance with Court Order",
+            d: "Processing for compliance with judgment, decree, or order under applicable law",
+            ex: "Court mandated disclosures, legal proceedings",
+            cnt: 1205,
+          },
+          {
+            id: "7(c)",
+            t: "Medical Emergency",
+            d: "Processing to respond to a medical emergency involving threat to life or health",
+            ex: "Emergency health services, disaster response",
+            cnt: 892,
+          },
+          {
+            id: "7(d)",
+            t: "Disaster or Public Order",
+            d: "Processing for provision of services during a disaster or breakdown of public order",
+            ex: "COVID management, flood relief, rescue operations",
+            cnt: 4782,
+          },
+          {
+            id: "7(e)",
+            t: "Employment Purpose",
+            d: "Processing for employment-related purposes including prevention of corporate espionage",
+            ex: "Government employee data, payroll, PF, benefits",
+            cnt: 28901,
+          },
+          {
+            id: "7(f)",
+            t: "Public Interest Research",
+            d: "Processing necessary for research, archiving, or statistical purposes in public interest",
+            ex: "Census, health surveys, economic studies",
+            cnt: 19122,
+          },
+        ];
+        return `
+  <div class="ph"><div><h1>Deemed Consent Tracker</h1><p>Section 7, DPDP Act 2023 — Processing without explicit consent for legitimate state functions</p></div></div>
+  <div class="alert a-warn"><i class="ti ti-alert-triangle"></i><div><strong>Important:</strong> Deemed consent under §7 is strictly limited to enumerated grounds. Processing must still comply with §8 obligations, storage limitation, purpose limitation, and data minimisation principles.</div></div>
+  <div class="mgrid" style="margin-bottom:1.4rem">
+    <div class="mc-card"><div class="mc-lbl">Total Deemed Consents</div><div class="mc-val">89,423</div></div>
+    <div class="mc-card"><div class="mc-lbl">Active Grounds</div><div class="mc-val">6/6</div></div>
+    <div class="mc-card"><div class="mc-lbl">Requiring Re-assessment</div><div class="mc-val" style="color:var(--warn)">3</div></div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:12px">
+    ${grounds
+      .map(
+        (g) => `
+    <div class="csc" style="align-items:flex-start;flex-direction:column;gap:9px">
+      <div style="display:flex;align-items:flex-start;gap:9px;width:100%">
+        <div class="csi" style="background:var(--navy);color:#fff;font-size:11px">§${g.id}</div>
+        <div style="flex:1"><div style="font-size:13px;font-weight:800">${g.t}</div><div style="font-size:11.5px;color:var(--tx2);margin-top:2px">${g.d}</div></div>
+        <div style="font-size:19px;font-weight:900;color:var(--navy)">${g.cnt.toLocaleString()}</div>
+      </div>
+      <div style="font-size:11px;color:var(--txm);padding-left:47px"><strong>e.g.:</strong> ${g.ex}</div>
+      <div style="padding-left:47px;width:100%"><div class="pbar"><div class="pfill" style="width:${Math.min(100, (g.cnt / 35000) * 100).toFixed(0)}%"></div></div></div>
+    </div>`,
+      )
+      .join("")}
+  </div>`;
+      }
+
+      function vChildren() {
+        return `
+  <div class="ph"><div><h1>Children's Data Protection</h1><p>Section 9, DPDP Act 2023 — Special obligations for processing data of minors (under 18)</p></div></div>
+  <div class="alert a-warn"><i class="ti ti-mood-kid"></i><div><strong>Section 9 Requirements:</strong> Processing personal data of a child requires verifiable consent of the parent or lawful guardian. Behavioural tracking of children and targeted advertising directed at children are prohibited. High-risk fiduciaries may be notified for additional obligations.</div></div>
+  <div class="mgrid">
+    <div class="mc-card"><div class="mc-lbl" style="color:var(--danger)"><i class="ti ti-mood-kid"></i> Total Child Records</div><div class="mc-val" style="color:var(--danger)">12,034</div></div>
+    <div class="mc-card"><div class="mc-lbl"><i class="ti ti-user-check"></i> Parental Consent Verified</div><div class="mc-val" style="color:var(--success)">11,987</div></div>
+    <div class="mc-card"><div class="mc-lbl"><i class="ti ti-clock"></i> Pending Verification</div><div class="mc-val" style="color:var(--warn)">47</div></div>
+    <div class="mc-card"><div class="mc-lbl"><i class="ti ti-x"></i> Failed Verification</div><div class="mc-val" style="color:var(--danger)">0</div></div>
+  </div>
+  <div class="g2">
+    <div class="card">
+      <div class="ch"><div class="ct"><i class="ti ti-building"></i> Children's Data by Department</div></div>
+      <div class="cb">
+        ${[
+          ["Education Department", "ti-school", 8234, 68, "edu"],
+          ["Health Department", "ti-stethoscope", 2891, 24, "health"],
+          ["Social Welfare", "ti-heart", 621, 5, "welfare"],
+          ["Revenue", "ti-building-bank", 288, 2, "revenue"],
+        ]
+          .map(
+            ([d, ic, cnt, pct, cat]) => `
+        <div style="display:flex;align-items:center;gap:9px;margin-bottom:11px">
+          <div class="d-${cat}" style="width:30px;height:30px;border-radius:7px;font-size:15px;display:flex;align-items:center;justify-content:center"><i class="ti ${ic}"></i></div>
+          <div style="flex:1">
+            <div style="display:flex;justify-content:space-between;margin-bottom:3px"><span style="font-size:12.5px;font-weight:700">${d}</span><span style="font-size:12px;font-weight:800">${cnt.toLocaleString()}</span></div>
+            <div class="pbar"><div class="pfill" style="width:${pct}%"></div></div>
+          </div>
+        </div>`,
+          )
+          .join("")}
+      </div>
+    </div>
+    <div class="card">
+      <div class="ch"><div class="ct"><i class="ti ti-checklist"></i> Section 9 Compliance Checklist</div></div>
+      <div class="cb" style="padding:0 1.2rem">
+        ${[
+          [true, "Parental/Guardian consent mechanism deployed"],
+          [true, "Age verification (DigiLocker/Aadhaar) integrated"],
+          [true, "No behavioural tracking of children enabled"],
+          [true, "No targeted advertising to children"],
+          [true, "Separate data silo for under-18 records"],
+          [false, "47 pending parental verifications to process"],
+          [true, "DPO notified for all child data processing"],
+          [true, "Data minimisation applied to child records"],
+        ]
+          .map(
+            ([ok, lbl]) => `
+        <div style="display:flex;align-items:center;gap:9px;padding:8px 0;border-bottom:1px solid var(--bdr)">
+          <i class="ti ${ok ? "ti-circle-check" : "ti-alert-triangle"}" style="color:${ok ? "var(--success)" : "var(--warn)"};font-size:15px"></i>
+          <span style="font-size:12.5px;color:${ok ? "var(--tx1)" : "var(--warn)"}">${lbl}</span>
+        </div>`,
+          )
+          .join("")}
+      </div>
+    </div>
+  </div>`;
+      }
+
+      function vRightsMgmt() {
+        const all = [...D.rights, ...EXTRA_RIGHTS];
+        return `
+  <div class="ph"><div><h1>Rights Requests Management</h1><p>Process citizen rights requests under DPDP Act 2023 Sections 11–13</p></div><div class="ph-actions"><button class="btn btn-outline btn-sm"><i class="ti ti-download"></i> Export</button></div></div>
+  <div class="mgrid" style="margin-bottom:1.4rem">
+    <div class="mc-card"><div class="mc-lbl">Total Requests</div><div class="mc-val">${all.length}</div></div>
+    <div class="mc-card"><div class="mc-lbl" style="color:var(--warn)">Pending</div><div class="mc-val" style="color:var(--warn)">${all.filter((r) => r.status === "pending").length}</div></div>
+    <div class="mc-card"><div class="mc-lbl" style="color:var(--indigo)">Processing</div><div class="mc-val" style="color:var(--indigo)">${all.filter((r) => r.status === "processing").length}</div></div>
+    <div class="mc-card"><div class="mc-lbl" style="color:var(--danger)">Overdue &gt;30d</div><div class="mc-val" style="color:var(--danger)">5</div></div>
+  </div>
+  <div class="card"><div class="tw"><table>
+    <thead><tr><th>ID</th><th>Citizen</th><th>Right Type</th><th>Department</th><th>Filed</th><th>Deadline (30d)</th><th>Status</th><th>Actions</th></tr></thead>
+    <tbody>
+      ${all
+        .map((r) => {
+          const dl = Math.ceil(
+            (new Date(r.dl) - new Date("2024-11-06")) / 864e5,
+          );
+          return `<tr>
+          <td><code>${r.id}</code></td>
+          <td style="font-weight:700">${r.cit}</td>
+          <td><div style="font-weight:700;font-size:12.5px">${r.tn}</div><div style="font-size:10.5px;color:var(--txm)">${r.sec}</div></td>
+          <td>${r.dept}</td>
+          <td style="font-size:12px">${r.filed}</td>
+          <td><div style="font-size:12px">${r.dl}</div><div style="font-size:10.5px;font-weight:800;color:${dl < 7 ? "var(--danger)" : dl < 14 ? "var(--warn)" : "var(--success)"}">${dl > 0 ? dl + "d left" : "OVERDUE"}</div></td>
+          <td><span class="badge ss-${r.status === "resolved" ? "r" : r.status === "processing" ? "g" : r.status === "pending" ? "p" : "rj"}">${r.status.charAt(0).toUpperCase() + r.status.slice(1)}</span></td>
+          <td><div style="display:flex;gap:4px;flex-wrap:wrap">
+            <button class="ab ab-v" onclick="viewRight('${r.id}')"><i class="ti ti-eye"></i></button>
+            ${r.status === "pending" ? `<button class="ab ab-ok"><i class="ti ti-check"></i> Process</button>` : ""}
+            ${r.status === "processing" ? `<button class="ab ab-pr"><i class="ti ti-file-check"></i> Resolve</button>` : ""}
+          </div></td>
+        </tr>`;
+        })
+        .join("")}
+    </tbody>
+  </table></div></div>`;
+      }
+
+      function vCompliance() {
+        const secs = [
+          {
+            n: "§4",
+            t: "Grounds for Processing",
+            d: "Consent + Legitimate uses documented",
+            st: "compliant",
+            det: "All processing grounds verified across 13 departments",
+          },
+          {
+            n: "§5",
+            t: "Notice Issuance",
+            d: "Plain language notices for all fiduciaries",
+            st: "compliant",
+            det: "4 active notices, all DPDP-compliant",
+          },
+          {
+            n: "§6",
+            t: "Consent Management",
+            d: "Free, specific, informed, unambiguous",
+            st: "compliant",
+            det: "12.8L+ explicit consents with full audit trail",
+          },
+          {
+            n: "§7",
+            t: "Deemed Consent Controls",
+            d: "Section 7 grounds properly documented",
+            st: "partial",
+            det: "3 grounds need re-assessment documentation",
+          },
+          {
+            n: "§8",
+            t: "Fiduciary Obligations",
+            d: "Data accuracy, retention, security",
+            st: "compliant",
+            det: "All 13 departments certified",
+          },
+          {
+            n: "§9",
+            t: "Children's Data Protection",
+            d: "Parental consent & age verification",
+            st: "partial",
+            det: "47 pending parental verifications",
+          },
+          {
+            n: "§11",
+            t: "Right to Access",
+            d: "Access request SLA adherence",
+            st: "compliant",
+            det: "Average resolution: 12 days",
+          },
+          {
+            n: "§12",
+            t: "Right to Correction/Erasure",
+            d: "Correction & erasure processing",
+            st: "review",
+            det: "5 correction requests overdue >30 days",
+          },
+          {
+            n: "§13",
+            t: "Grievance Redressal",
+            d: "Grievance officer designated & SLA met",
+            st: "partial",
+            det: "2 grievances approaching 30-day limit",
+          },
+          {
+            n: "§14",
+            t: "Right to Nominate",
+            d: "Nomination mechanism available",
+            st: "compliant",
+            det: "Integrated with DigiLocker API",
+          },
+        ];
+        const comp = secs.filter((s) => s.st === "compliant").length;
+        const score = Math.round((comp / secs.length) * 100);
+        return `
+  <div class="ph"><div><h1>DPDP Compliance Dashboard</h1><p>Section-by-section compliance status for Uttarakhand DPDP implementation</p></div><div class="ph-actions"><button class="btn btn-teal btn-sm"><i class="ti ti-certificate"></i> Generate Report</button></div></div>
+  <div class="cbanner">
+    <i class="ti ti-shield-check"></i>
+    <div><h3>Overall DPDP Act 2023 Compliance — Uttarakhand</h3><p>${comp} of ${secs.length} sections fully compliant. 2 partially compliant, 1 under review.</p></div>
+    <div class="cscore"><div class="sv">${score}%</div><div class="sl">Compliance Score</div></div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(275px,1fr));gap:11px">
+    ${secs
+      .map(
+        (s) => `
+    <div class="csc">
+      <div class="csi" style="background:var(--navy);color:#fff;font-size:11px">${s.n}</div>
+      <div style="flex:1"><div style="font-size:13px;font-weight:800">${s.t}</div><div style="font-size:11.5px;color:var(--tx2);margin-top:1px">${s.d}</div><div style="font-size:11px;color:var(--txm);margin-top:3px">${s.det}</div></div>
+      <div class="cst ${s.st}" style="display:flex;align-items:center;gap:4px;font-size:12px;font-weight:800;white-space:nowrap">
+        <i class="ti ${s.st === "compliant" ? "ti-circle-check" : s.st === "partial" ? "ti-alert-triangle" : "ti-x-circle"}"></i>${s.st.charAt(0).toUpperCase() + s.st.slice(1)}
+      </div>
+    </div>`,
+      )
+      .join("")}
+  </div>`;
+      }
+
+      function vAudit() {
+        return `
+  <div class="ph"><div><h1>System Audit Log</h1><p>Immutable, cryptographically-secured audit trail per DPDP Act Section 8(7)</p></div><div class="ph-actions"><button class="btn btn-outline btn-sm"><i class="ti ti-download"></i> Export Log</button></div></div>
+  <div class="alert a-ok"><i class="ti ti-shield-check"></i><div>All entries stored on <strong>NIC Blockchain Network</strong>. Each entry is SHA-256 hashed and chained — tamper-proof immutable audit trail.</div></div>
+  <div class="fbar">
+    <div class="si"><i class="ti ti-search"></i><input type="text" placeholder="Search by event type, user, consent ID…"></div>
+    <select class="fsel"><option value="">All Event Types</option><option>CONSENT_GRANTED</option><option>CONSENT_REVOKED</option><option>RIGHT_FILED</option><option>RIGHT_RESOLVED</option></select>
+    <select class="fsel"><option value="">All Dates</option><option>Last 24 hours</option><option>Last 7 days</option><option>Last 30 days</option></select>
+  </div>
+  <div class="card">
+    <div class="ch"><div class="ct"><i class="ti ti-list"></i> Audit Entries</div><span class="badge b-active">${D.audit.length} entries displayed</span></div>
+    <div class="cb" style="padding:0 1.2rem">
+      <div style="display:grid;grid-template-columns:148px 140px 1fr 110px 90px;gap:8px;padding:9px 0;border-bottom:2px solid var(--bdr);font-size:10px;font-weight:800;color:var(--txm);text-transform:uppercase;letter-spacing:.5px">
+        <span>Timestamp</span><span>Event</span><span>Description</span><span>Actor</span><span>Hash</span>
+      </div>
+      ${D.audit
+        .map(
+          (a) => `
+      <div style="display:grid;grid-template-columns:148px 140px 1fr 110px 90px;gap:8px;padding:11px 0;border-bottom:1px solid var(--bdr);align-items:center">
+        <div style="font-size:10px;font-family:monospace;color:var(--txm)">${a.ts}</div>
+        <div><span class="badge ${evBadge(a.type)}" style="font-size:10px">${a.type.replace(/_/g, " ")}</span></div>
+        <div style="font-size:11.5px;color:var(--tx2)">${a.ev}</div>
+        <div style="font-size:11px;color:var(--txm)">${a.actor.split(" ").slice(0, 2).join(" ")}</div>
+        <div style="font-size:9.5px;font-family:monospace;color:var(--txm)">${a.hash}</div>
+      </div>`,
+        )
+        .join("")}
+    </div>
+  </div>`;
+      }
+
+      function vReports() {
+        return `
+  <div class="ph"><div><h1>Reports & Analytics</h1><p>Compliance reports, consent analytics, and statutory submissions to MeitY / DPB</p></div><div class="ph-actions"><button class="btn btn-teal btn-sm"><i class="ti ti-file-chart"></i> Generate Q3 Report</button></div></div>
+  <div class="g2" style="margin-bottom:1.4rem">
+    <div class="card">
+      <div class="ch"><div class="ct"><i class="ti ti-chart-bar"></i> Consent Velocity — 2024</div></div>
+      <div class="cb"><div style="position:relative;height:220px"><canvas id="velChart" role="img" aria-label="Monthly consent velocity bar and line chart for 2024">Monthly consents with trend line overlay.</canvas></div></div>
+    </div>
+    <div class="card">
+      <div class="ch"><div class="ct"><i class="ti ti-file-text"></i> Statutory Reports</div></div>
+      <div class="cb" style="padding:0 1.2rem">
+        ${[
+          {
+            t: "Q3 2024 DPDP Compliance Report",
+            typ: "Quarterly",
+            st: "pending",
+            d: "Due: 15 Nov 2024",
+          },
+          {
+            t: "Q2 2024 DPDP Compliance Report",
+            typ: "Quarterly",
+            st: "done",
+            d: "Submitted: 15 Aug 2024",
+          },
+          {
+            t: "Annual Data Audit FY 2023-24",
+            typ: "Annual",
+            st: "done",
+            d: "Submitted: 30 Jun 2024",
+          },
+          {
+            t: "Children's Data Processing Report §9",
+            typ: "Statutory",
+            st: "done",
+            d: "Submitted: 01 Oct 2024",
+          },
+          {
+            t: "Deemed Consent Review H1 2024",
+            typ: "Statutory",
+            st: "done",
+            d: "Submitted: 15 Jul 2024",
+          },
+        ]
+          .map(
+            (r) => `
+        <div style="display:flex;align-items:center;gap:9px;padding:9px 0;border-bottom:1px solid var(--bdr)">
+          <i class="ti ti-file-report" style="color:var(--navy);font-size:19px"></i>
+          <div style="flex:1"><div style="font-size:12.5px;font-weight:700">${r.t}</div><div style="font-size:11px;color:var(--txm)">${r.typ} · ${r.d}</div></div>
+          ${r.st === "done" ? `<button class="ab ab-v"><i class="ti ti-download"></i></button>` : `<button class="btn btn-teal btn-sm">Generate</button>`}
+        </div>`,
+          )
+          .join("")}
+      </div>
+    </div>
+  </div>`;
+      }
+
+      // ======================== CHARTS ========================
+      function initCharts(v) {
+        const r = S.role;
+        if (v === "dashboard" && r === "principal") initPCharts();
+        else if (v === "dashboard") initMCharts();
+        else if (v === "reports") initRCharts();
+      }
+
+      function initPCharts() {
+        const el = document.getElementById("cDonut");
+        if (!el) return;
+        S.charts.d = new Chart(el, {
+          type: "doughnut",
+          data: {
+            labels: ["Revenue", "Health", "Transport", "Social Welfare"],
+            datasets: [
+              {
+                data: [1, 1, 1, 1],
+                backgroundColor: ["#C9A227", "#0D5F5A", "#1B3D6F", "#4338CA"],
+                borderWidth: 2,
+                borderColor: "#fff",
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            cutout: "70%",
+            plugins: { legend: { display: false } },
+          },
+        });
+      }
+
+      function initMCharts() {
+        const s = D.mgrStats;
+        const b = document.getElementById("deptBar");
+        if (b) {
+          S.charts.b = new Chart(b, {
+            type: "bar",
+            data: {
+              labels: Object.keys(s.depts),
+              datasets: [
+                {
+                  label: "Consents",
+                  data: Object.values(s.depts),
+                  backgroundColor: [
+                    "#1B3D6F",
+                    "#0D5F5A",
+                    "#C9A227",
+                    "#4338CA",
+                    "#D97706",
+                    "#DC2626",
+                    "#16A34A",
+                    "#6B7280",
+                  ],
+                  borderRadius: 4,
+                  borderSkipped: false,
+                },
+              ],
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: { legend: { display: false } },
+              scales: {
+                y: {
+                  grid: { color: "rgba(0,0,0,0.05)" },
+                  ticks: {
+                    callback: (v) => v / 1000 + "K",
+                    font: { size: 11 },
+                  },
+                },
+                x: { grid: { display: false }, ticks: { font: { size: 10 } } },
+              },
+            },
+          });
+        }
+        const t = document.getElementById("trendLine");
+        if (t) {
+          S.charts.t = new Chart(t, {
+            type: "line",
+            data: {
+              labels: [
+                "Jan",
+                "Feb",
+                "Mar",
+                "Apr",
+                "May",
+                "Jun",
+                "Jul",
+                "Aug",
+                "Sep",
+                "Oct",
+                "Nov",
+                "Dec",
+              ],
+              datasets: [
+                {
+                  label: "New Consents",
+                  data: s.trend,
+                  borderColor: "#0D5F5A",
+                  backgroundColor: "rgba(13,95,90,0.08)",
+                  tension: 0.4,
+                  fill: true,
+                  pointBackgroundColor: "#0D5F5A",
+                  pointRadius: 4,
+                },
+              ],
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: { legend: { display: false } },
+              scales: {
+                y: {
+                  grid: { color: "rgba(0,0,0,0.05)" },
+                  ticks: { callback: (v) => v / 1000 + "K" },
+                },
+                x: { grid: { display: false } },
+              },
+            },
+          });
+        }
+        const d = document.getElementById("typeDonut");
+        if (d) {
+          S.charts.td = new Chart(d, {
+            type: "doughnut",
+            data: {
+              labels: ["Explicit", "Deemed", "Children", "Pending"],
+              datasets: [
+                {
+                  data: [84.4, 6.9, 0.9, 7.8],
+                  backgroundColor: ["#0D5F5A", "#4338CA", "#DC2626", "#D97706"],
+                  borderWidth: 2,
+                  borderColor: "#fff",
+                },
+              ],
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              cutout: "65%",
+              plugins: { legend: { display: false } },
+            },
+          });
+        }
+      }
+
+      function initRCharts() {
+        const s = D.mgrStats;
+        const el = document.getElementById("velChart");
+        if (!el) return;
+        S.charts.v = new Chart(el, {
+          type: "bar",
+          data: {
+            labels: [
+              "Jan",
+              "Feb",
+              "Mar",
+              "Apr",
+              "May",
+              "Jun",
+              "Jul",
+              "Aug",
+              "Sep",
+              "Oct",
+              "Nov",
+              "Dec",
+            ],
+            datasets: [
+              {
+                type: "bar",
+                label: "New Consents",
+                data: s.trend,
+                backgroundColor: "rgba(13,95,90,0.7)",
+                borderRadius: 4,
+              },
+              {
+                type: "line",
+                label: "Moving Avg",
+                data: s.trend.map((v, i, a) => {
+                  const sl = a.slice(Math.max(0, i - 2), i + 1);
+                  return Math.round(sl.reduce((s, x) => s + x, 0) / sl.length);
+                }),
+                borderColor: "#C9A227",
+                backgroundColor: "transparent",
+                borderWidth: 2,
+                tension: 0.4,
+                pointRadius: 3,
+                pointBackgroundColor: "#C9A227",
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } },
+            scales: {
+              y: {
+                grid: { color: "rgba(0,0,0,0.05)" },
+                ticks: { callback: (v) => v / 1000 + "K" },
+              },
+              x: { grid: { display: false } },
+            },
+          },
+        });
+      }
+
+      // ======================== MODALS ========================
+      function viewC(id) {
+        const c = D.consents.find((x) => x.id === id);
+        if (!c) return;
+        openModal(
+          "Consent Record — " + c.id,
+          `
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:1.2rem">
+      <div class="d-${c.cat}" style="width:46px;height:46px;border-radius:11px;font-size:23px;display:flex;align-items:center;justify-content:center"><i class="ti ${deptIcon(c.cat)}"></i></div>
+      <div><div style="font-size:15px;font-weight:800">${c.dept}</div><div style="font-size:12.5px;color:var(--tx2)">${c.purpose}</div></div>
+      <div style="margin-left:auto">${statusBadge(c.status)}</div>
+    </div>
+    <div class="dr"><div class="dl">Consent ID</div><div class="dv"><code>${c.id}</code></div></div>
+    <div class="dr"><div class="dl">Type</div><div class="dv">${c.type === "deemed" ? '<span class="badge b-deemed">§7 Deemed Consent</span>' : '<span class="badge b-explicit">§6 Explicit Consent</span>'}</div></div>
+    ${c.s7 ? `<div class="dr"><div class="dl">§7 Basis</div><div class="dv" style="font-size:12px">${c.s7}</div></div>` : ""}
+    <div class="dr"><div class="dl">Granted</div><div class="dv">${c.gd || "Not yet granted"}</div></div>
+    <div class="dr"><div class="dl">Expires</div><div class="dv">${c.exp || "N/A"}</div></div>
+    <div class="dr"><div class="dl">Notice ID</div><div class="dv"><code>${c.ntc}</code></div></div>
+    <div class="dr"><div class="dl">Data Elements</div><div class="dv"><div class="chips">${c.de.map((e) => `<span class="chip">${e}</span>`).join("")}</div></div></div>
+    ${c.status === "revoked" ? `<div class="dr"><div class="dl">Revoked On</div><div class="dv" style="color:var(--danger)">${c.rd}</div></div><div class="dr"><div class="dl">Reason</div><div class="dv">${c.rr}</div></div>` : ""}
+    <div style="margin-top:1rem;padding:11px;background:var(--bg);border-radius:7px;font-size:12px;color:var(--txm)"><i class="ti ti-info-circle" style="margin-right:5px"></i>Under DPDP Act §6(3), you may withdraw this consent at any time. Withdrawal does not affect lawfulness of prior processing.</div>`,
+          `${c.status === "active" && c.type !== "deemed" ? `<button class="btn btn-danger btn-sm" onclick="revokeC('${c.id}');closeModal()"><i class="ti ti-x"></i> Withdraw Consent</button>` : ""}
+   <button class="btn btn-outline btn-sm" onclick="closeModal()">Close</button>`,
+        );
+      }
+
+      function revokeC(id) {
+        const c = D.consents.find((x) => x.id === id);
+        if (!c) return;
+        openModal(
+          "Withdraw Consent — " + id,
+          `
+    <div class="alert a-warn"><i class="ti ti-alert-triangle"></i><div>Withdrawing consent for <strong>${c.dept}</strong> may affect access to related services. Prior processing remains lawful (§6(7)).</div></div>
+    <div class="fg"><label>Reason for Withdrawal</label><select class="fsel" id="rv-reason" style="width:100%"><option value="">Select reason…</option><option>Purpose no longer required</option><option>Data security concerns</option><option>Incorrect data collected</option><option>Service no longer needed</option><option>Other</option></select></div>
+    <div class="fg"><label>Comments (Optional)</label><textarea style="width:100%;padding:10px;border:1.5px solid var(--bdr);border-radius:var(--r8);font-family:inherit;font-size:13px;resize:vertical" rows="3" placeholder="Additional comments…"></textarea></div>`,
+          `<button class="btn btn-danger btn-sm" onclick="confirmRevoke('${id}')"><i class="ti ti-x"></i> Confirm Withdrawal</button><button class="btn btn-outline btn-sm" onclick="closeModal()">Cancel</button>`,
+        );
+      }
+
+      function confirmRevoke(id) {
+        const c = D.consents.find((x) => x.id === id);
+        if (c) {
+          c.status = "revoked";
+          c.rd = new Date().toISOString().split("T")[0];
+          c.rr = "Withdrawn by Data Principal";
+          D.audit.unshift({
+            ts: new Date().toISOString().replace("T", " ").split(".")[0],
+            type: "CONSENT_REVOKED",
+            actor: "Ramesh Kumar",
+            ev: `Consent withdrawn for ${c.dept} (${id})`,
+            hash:
+              Math.random().toString(36).substr(2, 4) +
+              "..." +
+              Math.random().toString(36).substr(2, 4),
+          });
+        }
+        closeModal();
+        toast("Consent withdrawn for " + c.dept);
+        goTo(S.activeView);
+      }
+
+      function grantC(id) {
+        const c = D.consents.find((x) => x.id === id);
+        if (c) {
+          const t = new Date().toISOString().split("T")[0],
+            e = new Date(Date.now() + 365 * 864e5).toISOString().split("T")[0];
+          c.status = "active";
+          c.gd = t;
+          c.exp = e;
+          c.dl = 365;
+        }
+        toast("Consent granted for " + (c?.dept || id));
+        goTo(S.activeView);
+      }
+
+      function denyC(id) {
+        const c = D.consents.find((x) => x.id === id);
+        if (c) {
+          c.status = "revoked";
+          c.rd = new Date().toISOString().split("T")[0];
+          c.rr = "Denied by Data Principal";
+        }
+        toast("Consent request denied for " + (c?.dept || id));
+        goTo(S.activeView);
+      }
+
+      function fileRight(type) {
+        const nm = {
+          access: "Right to Access (§11)",
+          correction: "Right to Correction (§12a)",
+          erasure: "Right to Erasure (§12b)",
+          grievance: "Grievance Redressal (§13)",
+        };
+        openModal(
+          "File " + nm[type],
+          `
+    <div class="alert a-info"><i class="ti ti-info-circle"></i><div>The Data Fiduciary must respond within <strong>30 days</strong> per DPDP Act 2023. Non-response can be escalated to the Data Protection Board of India.</div></div>
+    <div class="fg"><label>Department / Data Fiduciary</label><select class="fsel" style="width:100%"><option value="">Select department…</option>${D.consents
+      .filter((c) => c.status === "active")
+      .map((c) => `<option>${c.dept}</option>`)
+      .join("")}</select></div>
+    <div class="fg"><label>Request Type</label><input type="text" value="${nm[type]}" readonly style="background:var(--bg);color:var(--tx2)"></div>
+    <div class="fg"><label>Description</label><textarea style="width:100%;padding:10px;border:1.5px solid var(--bdr);border-radius:var(--r8);font-family:inherit;font-size:13px;resize:vertical" rows="4" placeholder="Describe your request in detail…"></textarea></div>
+    <div class="fg"><label>Supporting Document (Optional)</label><input type="file" style="font-size:12.5px"></div>`,
+          `<button class="btn btn-teal btn-sm" onclick="submitRight('${type}')"><i class="ti ti-send"></i> Submit Request</button><button class="btn btn-outline btn-sm" onclick="closeModal()">Cancel</button>`,
+        );
+      }
+
+      function submitRight(type) {
+        toast(
+          "Rights request filed. Tracking ID: RGT-2024-00" +
+            (D.rights.length + 1),
+        );
+        closeModal();
+        goTo("my-requests");
+      }
+
+      function viewRight(id) {
+        const r = [...D.rights, ...EXTRA_RIGHTS].find((x) => x.id === id);
+        if (!r) return;
+        const dl = Math.ceil((new Date(r.dl) - new Date("2024-11-06")) / 864e5);
+        openModal(
+          r.tn + " — " + r.id,
+          `
+    <div class="dr"><div class="dl">Request ID</div><div class="dv"><code>${r.id}</code></div></div>
+    <div class="dr"><div class="dl">Type</div><div class="dv"><strong>${r.tn}</strong> (${r.sec})</div></div>
+    <div class="dr"><div class="dl">Department</div><div class="dv">${r.dept}</div></div>
+    <div class="dr"><div class="dl">Filed On</div><div class="dv">${r.filed}</div></div>
+    <div class="dr"><div class="dl">30-Day Deadline</div><div class="dv" style="color:${dl < 7 ? "var(--danger)" : "var(--warn)"}">${r.dl} (${dl > 0 ? dl + "d remaining" : "OVERDUE"})</div></div>
+    <div class="dr"><div class="dl">Status</div><div class="dv"><span class="badge ss-${r.status === "resolved" ? "r" : r.status === "processing" ? "g" : "p"}">${r.status}</span></div></div>
+    <div class="dr"><div class="dl">Description</div><div class="dv">${r.desc}</div></div>
+    <div class="dr"><div class="dl">Resolution</div><div class="dv">${r.res || '<span style="color:var(--txm)">Awaiting resolution from fiduciary</span>'}</div></div>`,
+          `${!r.res ? `<button class="btn btn-danger btn-sm" onclick="toast('Escalation to DPB initiated for '+r.id);closeModal()"><i class="ti ti-arrow-up"></i> Escalate to DPB</button>` : ""}
+   <button class="btn btn-outline btn-sm" onclick="closeModal()">Close</button>`,
+        );
+      }
+
+      function viewNotice(id) {
+        const n = D.notices.find((x) => x.id === id);
+        if (!n) {
+          toast("Notice " + id + " not in public registry");
+          return;
+        }
+        openModal(
+          "DPDP Notice — " + id,
+          `
+    <div class="dr"><div class="dl">Department</div><div class="dv"><strong>${n.dept}</strong></div></div>
+    <div class="dr"><div class="dl">Purpose</div><div class="dv">${n.purpose}</div></div>
+    <div class="dr"><div class="dl">Created</div><div class="dv">${n.created}</div></div>
+    <div class="dr"><div class="dl">Retention Period</div><div class="dv">${n.ret}</div></div>
+    <div class="dr"><div class="dl">Third Party Sharing</div><div class="dv">${n.tp ? n.tpd : "No third party sharing"}</div></div>
+    <div class="dr"><div class="dl">Data Elements</div><div class="dv"><div class="chips">${n.de.map((e) => `<span class="chip">${e}</span>`).join("")}</div></div></div>
+    <div class="dr"><div class="dl">Grievance Officer</div><div class="dv">Shri Anil Joshi, DPO · dpdp-uk@gov.in · 1800-180-XXXX</div></div>
+    <div class="dr"><div class="dl">Compliance Score</div><div class="dv" style="color:${n.score >= 90 ? "var(--success)" : "var(--warn)"};font-weight:800">${n.score}%</div></div>`,
+          `<button class="btn btn-outline btn-sm" onclick="closeModal()">Close</button>`,
+        );
+      }
+
+      function showNotifs() {
+        openModal(
+          "Notifications",
+          `
+    <ul class="tl">
+      ${[
+        {
+          dc: "a",
+          ic: "ti-clock",
+          t: "Consent Expiring Soon",
+          d: "Transport Dept consent expires in 45 days — renewal recommended",
+          ts: "2 hours ago",
+        },
+        {
+          dc: "r",
+          ic: "ti-alert-triangle",
+          t: "Grievance Filed",
+          d: "Grievance RGT-2024-003 against Health Dept has been received & acknowledged",
+          ts: "3 days ago",
+        },
+        {
+          dc: "b",
+          ic: "ti-file-text",
+          t: "New Consent Request",
+          d: "Education Dept has sent new consent notice NTC-EDU-006 for your review",
+          ts: "5 days ago",
+        },
+        {
+          dc: "g",
+          ic: "ti-circle-check",
+          t: "Right Request Resolved",
+          d: "Data access request RGT-2024-001 resolved by Revenue Dept via DigiLocker",
+          ts: "5 weeks ago",
+        },
+      ]
+        .map(
+          (n) =>
+            `<li class="tli"><div class="td ${n.dc}"><i class="ti ${n.ic}"></i></div><div><div class="tc-t">${n.t}</div><div class="tc-d">${n.d}</div><div class="tc-ts">${n.ts}</div></div></li>`,
+        )
+        .join("")}
+    </ul>`,
+          `<button class="btn btn-outline btn-sm" onclick="closeModal()">Close</button>`,
+        );
+      }
+
+      function openModal(title, body, foot) {
+        document.getElementById("m-title").textContent = title;
+        document.getElementById("m-body").innerHTML = body;
+        document.getElementById("m-foot").innerHTML = foot || "";
+        document.getElementById("moverlay").classList.remove("hidden");
+      }
+      function closeModal(e) {
+        if (!e || e.target === document.getElementById("moverlay"))
+          document.getElementById("moverlay").classList.add("hidden");
+      }
+
+      function toast(msg) {
+        const t = document.createElement("div");
+        t.style.cssText =
+          "position:fixed;bottom:22px;right:22px;background:var(--navy3);color:#fff;padding:11px 18px;border-radius:var(--r8);font-size:12.5px;z-index:9999;max-width:380px;display:flex;align-items:center;gap:8px;box-shadow:0 4px 20px rgba(0,0,0,.3)";
+        t.innerHTML = `<i class="ti ti-circle-check" style="font-size:15px;color:#7FE9D0"></i>${msg}`;
+        document.body.appendChild(t);
+        setTimeout(() => {
+          t.style.transition = "all .3s";
+          t.style.opacity = "0";
+          t.style.transform = "translateY(6px)";
+          setTimeout(() => t.remove(), 300);
+        }, 3200);
+      }
+    </script>
+  </body>
+</html>

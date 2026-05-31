@@ -277,6 +277,135 @@ tbody td{padding:11px 13px;font-size:12.5px;color:var(--tx1);vertical-align:midd
 /* ── MISC ── */
 code{font-size:11px;background:var(--bg);padding:2px 5px;border-radius:4px;color:var(--tx2)}
 .separator{height:1px;background:var(--bdr);margin:1.1rem 0}
+
+/* ── RESPONSIVE ── */
+
+/* Hamburger: hidden on desktop */
+.ham-btn{display:none!important}
+
+/* ── TABLET (≤1024px) ── */
+@media(max-width:1024px){
+  :root{--sw:240px}
+  .g2,.g3{grid-template-columns:1fr!important}
+  .mgrid{grid-template-columns:repeat(2,1fr)!important}
+  .rgrid{grid-template-columns:repeat(2,1fr)!important}
+}
+
+/* ── MOBILE (≤768px) ── */
+@media(max-width:768px){
+  /* Sidebar: hidden off-screen by default, slides in on toggle */
+  .sb{transform:translateX(-100%);transition:transform .25s ease;z-index:200}
+  .sb.open{transform:translateX(0)}
+
+  /* Main content: full width, no left margin */
+  .mc{margin-left:0!important}
+
+  /* Show hamburger */
+  .ham-btn{display:flex!important}
+
+  /* Topbar */
+  .topbar{padding:0 1rem;gap:8px}
+  .topbar-title{font-size:13px}
+  .tb-divider{display:none}
+  #tb-rbadge{display:none}
+
+  /* Content area */
+  .content{padding:1rem}
+
+  /* Login card */
+  .lcard{padding:1.75rem 1.25rem;border-radius:14px}
+  .lhead h1{font-size:19px}
+  .role-grid{grid-template-columns:1fr 1fr;gap:8px}
+  .rc{padding:.75rem .5rem}
+  .rc-icon svg{width:26px;height:26px}
+  .rn{font-size:12px}
+  .rd{font-size:10px}
+
+  /* Grids collapse to single column */
+  .g2,.g3{grid-template-columns:1fr!important}
+  .mgrid{grid-template-columns:repeat(2,1fr)!important}
+  .rgrid{grid-template-columns:1fr 1fr!important}
+
+  /* Page header stacks */
+  .ph{flex-direction:column;gap:10px;align-items:flex-start}
+  .ph-actions{display:flex;flex-wrap:wrap;gap:6px;width:100%}
+  .ph-actions .btn,.ph-actions button{flex:1;justify-content:center;font-size:11.5px}
+
+  /* Filter bar stacks */
+  .fbar{flex-direction:column;align-items:stretch}
+  .si{min-width:100%}
+  .fsel{width:100%}
+
+  /* Tables: horizontal scroll */
+  .tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  table{min-width:600px}
+  thead th{font-size:10px;padding:8px 10px;white-space:nowrap}
+  tbody td{font-size:11.5px;padding:9px 10px}
+
+  /* Card headers */
+  .ch{flex-wrap:wrap;gap:8px}
+  .ch .btn,.ch button{font-size:11px;padding:5px 10px}
+
+  /* Compliance banner */
+  .cbanner{flex-direction:column;align-items:flex-start;gap:.75rem;padding:1rem}
+  .cbanner i{font-size:22px}
+  .cbanner h3{font-size:13px}
+  .cscore{margin-left:0;text-align:left;display:flex;align-items:center;gap:10px}
+  .cscore .sv{font-size:24px}
+
+  /* Metrics grid: 2 col on mobile */
+  .mgrid{grid-template-columns:1fr 1fr!important}
+  .mc-val{font-size:22px}
+
+  /* Rights grid: 1 col on small screens */
+  .rgrid{grid-template-columns:1fr!important}
+
+  /* Detail rows stack on very small screens */
+  .dr{flex-direction:column;gap:3px}
+  .dl{width:100%;font-size:10.5px}
+  .dv{font-size:12.5px}
+
+  /* Timeline */
+  .tli{gap:9px}
+
+  /* Chips wrap */
+  .chips{flex-wrap:wrap}
+
+  /* Modal: full screen on mobile */
+  .moverlay{padding:.5rem}
+  .modal{max-height:95vh;border-radius:12px}
+  .mb{padding:1rem}
+  .mf{flex-wrap:wrap;gap:6px}
+  .mf .btn{flex:1;justify-content:center}
+
+  /* Sidebar footer note */
+  .sb-ft p{font-size:9px}
+
+  /* Compliance section cards */
+  .csc{flex-wrap:wrap}
+
+  /* Notice cards grid */
+  [style*="grid-template-columns:repeat(auto-fit"]{grid-template-columns:1fr!important}
+
+  /* Action button text hidden on small tables */
+  .ab{padding:4px 7px;font-size:10.5px}
+
+  /* Step wizard in modal */
+  #m-body [style*="display:flex;gap:6px;margin-bottom"]{gap:3px}
+}
+
+/* ── SMALL MOBILE (≤480px) ── */
+@media(max-width:480px){
+  .mgrid{grid-template-columns:1fr!important}
+  .rgrid{grid-template-columns:1fr!important}
+  .role-grid{grid-template-columns:1fr 1fr}
+  .lcard{padding:1.5rem 1rem}
+  .tbr gap{gap:6px}
+  .tb-btn{width:30px;height:30px;font-size:14px}
+  .topbar-title{font-size:12px;max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .content{padding:.75rem}
+  .ph h1{font-size:17px}
+}
 </style>
 </head>
 <body>
@@ -388,7 +517,12 @@ code{font-size:11px;background:var(--bg);padding:2px 5px;border-radius:4px;color
 
   <main class="mc">
     <div class="topbar">
-      <div class="topbar-title" id="tb-title">Dashboard</div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <button class="tb-btn ham-btn" id="ham-btn" onclick="toggleSidebar()" aria-label="Toggle menu">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <div class="topbar-title" id="tb-title">Dashboard</div>
+      </div>
       <div class="tbr">
         <span class="role-badge rb-principal" id="tb-rbadge">Data Principal</span>
         <div class="tb-divider"></div>
@@ -400,6 +534,8 @@ code{font-size:11px;background:var(--bg);padding:2px 5px;border-radius:4px;color
     <div class="content" id="content"></div>
   </main>
 </div>
+<!-- Sidebar overlay backdrop -->
+<div id="sb-backdrop" onclick="toggleSidebar()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:99"></div>
 
 <!-- MODAL -->
 <div class="moverlay hidden" id="moverlay" onclick="closeModal(event)">
@@ -681,27 +817,14 @@ function vConsents(){
   <div class="ph"><div><h1>My Consents</h1><p>All consents under DPDP Act 2023 Section 6 — granted, revoked, or awaiting your decision</p></div><div class="ph-actions"><button class="btn btn-outline btn-sm"><i class="ti ti-download"></i> Export</button></div></div>
   <div class="alert a-info"><i class="ti ti-info-circle"></i><div>Under <strong>Section 6 of DPDP Act 2023</strong>, your consent must be free, specific, informed, unconditional and unambiguous. You have the right to withdraw consent at any time.</div></div>
   <div class="fbar">
-    <div class="si"><i class="ti ti-search"></i><input type="text" placeholder="Search department, purpose…"></div>
-    <select class="fsel"><option value="">All Status</option><option>Active</option><option>Pending</option><option>Revoked</option></select>
-    <select class="fsel"><option value="">All Types</option><option>Explicit</option><option>Deemed (§7)</option></select>
+    <div class="si"><i class="ti ti-search"></i><input id="cf-search" type="text" placeholder="Search department, purpose…" oninput="applyFilter('consents')"></div>
+    <select id="cf-status" class="fsel" onchange="applyFilter('consents')"><option value="">All Status</option><option value="active">Active</option><option value="pending">Pending</option><option value="revoked">Revoked</option></select>
+    <select id="cf-type" class="fsel" onchange="applyFilter('consents')"><option value="">All Types</option><option value="explicit">Explicit</option><option value="deemed">Deemed (§7)</option></select>
   </div>
   <div class="card"><div class="tw"><table>
     <thead><tr><th>Consent ID</th><th>Department</th><th>Purpose</th><th>Data Elements</th><th>Type</th><th>Status</th><th>Validity</th><th>Actions</th></tr></thead>
-    <tbody>
-      ${D.consents.map(c=>`<tr>
-        <td><code>${c.id}</code></td>
-        <td><div style="display:flex;align-items:center;gap:7px"><div class="d-${c.cat}" style="width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px"><i class="ti ${deptIcon(c.cat)}"></i></div><div><div style="font-weight:700;font-size:12.5px">${c.dept}</div><div style="font-size:10.5px;color:var(--txm)">${c.ntc}</div></div></div></td>
-        <td style="font-size:12px;max-width:165px">${c.purpose}</td>
-        <td><div style="font-size:11px;color:var(--txm)">${c.de.length} elements</div><div style="font-size:10.5px;color:var(--txm)">${c.de.slice(0,2).join(', ')}${c.de.length>2?'…':''}</div></td>
-        <td>${c.type==='deemed'?'<span class="badge b-deemed">§7 Deemed</span>':'<span class="badge b-explicit">Explicit</span>'}</td>
-        <td>${statusBadge(c.status)}</td>
-        <td>${c.gd?`<div style="font-size:12px"><b>From:</b> ${c.gd}</div><div style="font-size:12px"><b>To:</b> ${c.exp}</div>${c.dl>0?`<div style="font-size:10.5px;color:${c.dl<60?'var(--warn)':'var(--txm)'}">${c.dl} days left</div>`:''}`:(c.status==='pending'?`<div style="font-size:12px;color:var(--warn)">Awaiting consent</div><div style="font-size:10.5px;color:var(--txm)">Requested: ${c.reqd}</div>`:`<div style="font-size:12px;color:var(--danger)">Revoked: ${c.rd}</div>`)}</td>
-        <td><div style="display:flex;gap:4px;flex-wrap:wrap">
-          <button class="ab ab-v" onclick="viewC('${c.id}')"><i class="ti ti-eye"></i> View</button>
-          ${c.status==='active'&&c.type!=='deemed'?`<button class="ab ab-rv" onclick="revokeC('${c.id}')"><i class="ti ti-x"></i> Revoke</button>`:''}
-          ${c.status==='pending'?`<button class="ab ab-ok" onclick="grantC('${c.id}')"><i class="ti ti-check"></i> Grant</button><button class="ab ab-rv" onclick="denyC('${c.id}')">Deny</button>`:''}
-        </div></td>
-      </tr>`).join('')}
+    <tbody id="consents-tbody">
+      ${renderConsentRows(D.consents)}
     </tbody>
   </table></div></div>`;
 }
@@ -921,33 +1044,22 @@ function vRegistry(){
   return `
   <div class="ph"><div><h1>Consent Registry</h1><p>State-wide registry — all departments, all citizens, all consent records</p></div><div class="ph-actions"><button class="btn btn-outline btn-sm" onclick="exportCSV()"><i class="ti ti-download"></i> Export CSV</button><button class="btn btn-teal btn-sm" onclick="newConsentEntry()"><i class="ti ti-plus"></i> New Entry</button></div></div>
   <div class="fbar">
-    <div class="si"><i class="ti ti-search"></i><input type="text" placeholder="Search by Aadhaar, name, department, consent ID…"></div>
-    <select class="fsel"><option value="">All Departments</option><option>Revenue</option><option>Health</option><option>Transport</option><option>Education</option><option>Social Welfare</option></select>
-    <select class="fsel"><option value="">All Status</option><option>Active</option><option>Pending</option><option>Revoked</option></select>
-    <select class="fsel"><option value="">All Types</option><option>Explicit (§6)</option><option>Deemed (§7)</option></select>
+    <div class="si"><i class="ti ti-search"></i><input id="rf-search" type="text" placeholder="Search by name, department, consent ID…" oninput="applyFilter('registry')"></div>
+    <select id="rf-dept" class="fsel" onchange="applyFilter('registry')"><option value="">All Departments</option><option value="Revenue Department">Revenue</option><option value="Health Department">Health</option><option value="Transport Department">Transport</option><option value="Education Department">Education</option><option value="Social Welfare Department">Social Welfare</option></select>
+    <select id="rf-status" class="fsel" onchange="applyFilter('registry')"><option value="">All Status</option><option value="active">Active</option><option value="pending">Pending</option><option value="revoked">Revoked</option></select>
+    <select id="rf-type" class="fsel" onchange="applyFilter('registry')"><option value="">All Types</option><option value="explicit">Explicit (§6)</option><option value="deemed">Deemed (§7)</option></select>
   </div>
   <div class="card">
-    <div class="ch"><div style="font-size:12px;color:var(--txm)">Showing <strong>12,84,592</strong> records · Filtered: All</div><button class="btn btn-outline btn-sm" style="margin-left:auto"><i class="ti ti-refresh"></i> Refresh</button></div>
+    <div class="ch"><div style="font-size:12px;color:var(--txm)" id="reg-count">Showing <strong>${D.consents.length}</strong> records</div><button class="btn btn-outline btn-sm" style="margin-left:auto" onclick="applyFilter('registry')"><i class="ti ti-refresh"></i> Refresh</button></div>
     <div class="tw"><table>
       <thead><tr><th><input type="checkbox"></th><th>Consent ID</th><th>Citizen</th><th>Department</th><th>Purpose</th><th>Type</th><th>Status</th><th>Granted</th><th>Expires</th><th>Actions</th></tr></thead>
-      <tbody>
-        ${D.consents.map(c=>`<tr>
-          <td><input type="checkbox"></td>
-          <td><code>${c.id}</code></td>
-          <td><div style="font-weight:700;font-size:12.5px">${c.cit}</div><div style="font-size:10.5px;color:var(--txm)">XXXX-XXXX-1234</div></td>
-          <td><div style="display:flex;align-items:center;gap:6px"><div class="d-${c.cat}" style="width:26px;height:26px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px"><i class="ti ${deptIcon(c.cat)}"></i></div><span style="font-size:12.5px">${c.dept}</span></div></td>
-          <td style="font-size:11.5px;max-width:155px">${c.purpose}</td>
-          <td>${c.type==='deemed'?'<span class="badge b-deemed">§7 Deemed</span>':'<span class="badge b-explicit">Explicit</span>'}</td>
-          <td>${statusBadge(c.status)}</td>
-          <td style="font-size:12px">${c.gd||'—'}</td>
-          <td style="font-size:12px">${c.exp||'—'}</td>
-          <td><div style="display:flex;gap:4px"><button class="ab ab-v" onclick="viewC('${c.id}')"><i class="ti ti-eye"></i></button><button class="ab ab-pr"><i class="ti ti-edit"></i></button></div></td>
-        </tr>`).join('')}
+      <tbody id="registry-tbody">
+        ${renderRegistryRows(D.consents)}
       </tbody>
     </table></div>
     <div style="padding:.9rem 1.2rem;border-top:1px solid var(--bdr);display:flex;align-items:center;justify-content:space-between;font-size:12.5px;color:var(--txm)">
-      <span>Showing 1–6 of 12,84,592 records (representative sample)</span>
-      <div style="display:flex;gap:8px"><button class="btn btn-outline btn-sm">Previous</button><button class="btn btn-outline btn-sm">Next</button></div>
+      <span id="reg-footer">Showing ${D.consents.length} records</span>
+      <div style="display:flex;gap:8px"><button class="btn btn-outline btn-sm" disabled>Previous</button><button class="btn btn-outline btn-sm" disabled>Next</button></div>
     </div>
   </div>`;
 }
@@ -1131,24 +1243,17 @@ function vAudit(){
   <div class="ph"><div><h1>System Audit Log</h1><p>Immutable, cryptographically-secured audit trail per DPDP Act Section 8(7)</p></div><div class="ph-actions"><button class="btn btn-outline btn-sm" onclick="exportAuditLog()"><i class="ti ti-download"></i> Export Log</button></div></div>
   <div class="alert a-ok"><i class="ti ti-shield-check"></i><div>All entries stored on <strong>NIC Blockchain Network</strong>. Each entry is SHA-256 hashed and chained — tamper-proof immutable audit trail.</div></div>
   <div class="fbar">
-    <div class="si"><i class="ti ti-search"></i><input type="text" placeholder="Search by event type, user, consent ID…"></div>
-    <select class="fsel"><option value="">All Event Types</option><option>CONSENT_GRANTED</option><option>CONSENT_REVOKED</option><option>RIGHT_FILED</option><option>RIGHT_RESOLVED</option></select>
-    <select class="fsel"><option value="">All Dates</option><option>Last 24 hours</option><option>Last 7 days</option><option>Last 30 days</option></select>
+    <div class="si"><i class="ti ti-search"></i><input id="af-search" type="text" placeholder="Search by event type, user, consent ID…" oninput="applyFilter('audit')"></div>
+    <select id="af-type" class="fsel" onchange="applyFilter('audit')"><option value="">All Event Types</option><option value="CONSENT_GRANTED">CONSENT_GRANTED</option><option value="CONSENT_REVOKED">CONSENT_REVOKED</option><option value="RIGHT_FILED">RIGHT_FILED</option><option value="RIGHT_RESOLVED">RIGHT_RESOLVED</option><option value="NOTICE_UPDATED">NOTICE_UPDATED</option><option value="NOTICE_PUBLISHED">NOTICE_PUBLISHED</option></select>
+    <select id="af-date" class="fsel" onchange="applyFilter('audit')"><option value="">All Dates</option><option value="1">Last 24 hours</option><option value="7">Last 7 days</option><option value="30">Last 30 days</option></select>
   </div>
   <div class="card">
-    <div class="ch"><div class="ct"><i class="ti ti-list"></i> Audit Entries</div><span class="badge b-active">${D.audit.length} entries displayed</span></div>
+    <div class="ch"><div class="ct"><i class="ti ti-list"></i> Audit Entries</div><span class="badge b-active" id="audit-count">${D.audit.length} entries</span></div>
     <div class="cb" style="padding:0 1.2rem">
       <div style="display:grid;grid-template-columns:148px 140px 1fr 110px 90px;gap:8px;padding:9px 0;border-bottom:2px solid var(--bdr);font-size:10px;font-weight:800;color:var(--txm);text-transform:uppercase;letter-spacing:.5px">
         <span>Timestamp</span><span>Event</span><span>Description</span><span>Actor</span><span>Hash</span>
       </div>
-      ${D.audit.map(a=>`
-      <div style="display:grid;grid-template-columns:148px 140px 1fr 110px 90px;gap:8px;padding:11px 0;border-bottom:1px solid var(--bdr);align-items:center">
-        <div style="font-size:10px;font-family:monospace;color:var(--txm)">${a.ts}</div>
-        <div><span class="badge ${evBadge(a.type)}" style="font-size:10px">${a.type.replace(/_/g,' ')}</span></div>
-        <div style="font-size:11.5px;color:var(--tx2)">${a.ev}</div>
-        <div style="font-size:11px;color:var(--txm)">${a.actor.split(' ').slice(0,2).join(' ')}</div>
-        <div style="font-size:9.5px;font-family:monospace;color:var(--txm)">${a.hash}</div>
-      </div>`).join('')}
+      <div id="audit-tbody">${renderAuditRows(D.audit)}</div>
     </div>
   </div>`;
 }
@@ -2003,6 +2108,114 @@ function toast(msg){
   document.body.appendChild(t);
   setTimeout(()=>{t.style.transition='all .3s';t.style.opacity='0';t.style.transform='translateY(6px)';setTimeout(()=>t.remove(),300)},3200);
 }
+
+// ======================== ROW RENDERERS ========================
+function renderConsentRows(data){
+  if(!data.length) return `<tr><td colspan="8" style="text-align:center;padding:2rem;color:var(--txm)"><i class="ti ti-search" style="font-size:24px;display:block;margin-bottom:8px"></i>No records match your filters</td></tr>`;
+  return data.map(c=>`<tr>
+    <td><code>${c.id}</code></td>
+    <td><div style="display:flex;align-items:center;gap:7px"><div class="d-${c.cat}" style="width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px"><i class="ti ${deptIcon(c.cat)}"></i></div><div><div style="font-weight:700;font-size:12.5px">${c.dept}</div><div style="font-size:10.5px;color:var(--txm)">${c.ntc}</div></div></div></td>
+    <td style="font-size:12px;max-width:165px">${c.purpose}</td>
+    <td><div style="font-size:11px;color:var(--txm)">${c.de.length} elements</div><div style="font-size:10.5px;color:var(--txm)">${c.de.slice(0,2).join(', ')}${c.de.length>2?'…':''}</div></td>
+    <td>${c.type==='deemed'?'<span class="badge b-deemed">§7 Deemed</span>':'<span class="badge b-explicit">Explicit</span>'}</td>
+    <td>${statusBadge(c.status)}</td>
+    <td>${c.gd?`<div style="font-size:12px"><b>From:</b> ${c.gd}</div><div style="font-size:12px"><b>To:</b> ${c.exp}</div>${c.dl>0?`<div style="font-size:10.5px;color:${c.dl<60?'var(--warn)':'var(--txm)'}">${c.dl} days left</div>`:''}`:(c.status==='pending'?`<div style="font-size:12px;color:var(--warn)">Awaiting consent</div><div style="font-size:10.5px;color:var(--txm)">Requested: ${c.reqd}</div>`:`<div style="font-size:12px;color:var(--danger)">Revoked: ${c.rd}</div>`)}</td>
+    <td><div style="display:flex;gap:4px;flex-wrap:wrap">
+      <button class="ab ab-v" onclick="viewC('${c.id}')"><i class="ti ti-eye"></i> View</button>
+      ${c.status==='active'&&c.type!=='deemed'?`<button class="ab ab-rv" onclick="revokeC('${c.id}')"><i class="ti ti-x"></i> Revoke</button>`:''}
+      ${c.status==='pending'?`<button class="ab ab-ok" onclick="grantC('${c.id}')"><i class="ti ti-check"></i> Grant</button><button class="ab ab-rv" onclick="denyC('${c.id}')">Deny</button>`:''}
+    </div></td>
+  </tr>`).join('');
+}
+
+function renderRegistryRows(data){
+  if(!data.length) return `<tr><td colspan="10" style="text-align:center;padding:2rem;color:var(--txm)"><i class="ti ti-search" style="font-size:24px;display:block;margin-bottom:8px"></i>No records match your filters</td></tr>`;
+  return data.map(c=>`<tr>
+    <td><input type="checkbox"></td>
+    <td><code>${c.id}</code></td>
+    <td><div style="font-weight:700;font-size:12.5px">${c.cit}</div><div style="font-size:10.5px;color:var(--txm)">XXXX-XXXX-1234</div></td>
+    <td><div style="display:flex;align-items:center;gap:6px"><div class="d-${c.cat}" style="width:26px;height:26px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px"><i class="ti ${deptIcon(c.cat)}"></i></div><span style="font-size:12.5px">${c.dept}</span></div></td>
+    <td style="font-size:11.5px;max-width:155px">${c.purpose}</td>
+    <td>${c.type==='deemed'?'<span class="badge b-deemed">§7 Deemed</span>':'<span class="badge b-explicit">Explicit</span>'}</td>
+    <td>${statusBadge(c.status)}</td>
+    <td style="font-size:12px">${c.gd||'—'}</td>
+    <td style="font-size:12px">${c.exp||'—'}</td>
+    <td><div style="display:flex;gap:4px"><button class="ab ab-v" onclick="viewC('${c.id}')"><i class="ti ti-eye"></i></button><button class="ab ab-pr" onclick="toast('Edit form for '+c.id)"><i class="ti ti-edit"></i></button></div></td>
+  </tr>`).join('');
+}
+
+function renderAuditRows(data){
+  if(!data.length) return `<div style="text-align:center;padding:2rem;color:var(--txm)"><i class="ti ti-search" style="font-size:24px;display:block;margin-bottom:8px"></i>No audit entries match your filters</div>`;
+  return data.map(a=>`
+  <div style="display:grid;grid-template-columns:148px 140px 1fr 110px 90px;gap:8px;padding:11px 0;border-bottom:1px solid var(--bdr);align-items:center">
+    <div style="font-size:10px;font-family:monospace;color:var(--txm)">${a.ts}</div>
+    <div><span class="badge ${evBadge(a.type)}" style="font-size:10px">${a.type.replace(/_/g,' ')}</span></div>
+    <div style="font-size:11.5px;color:var(--tx2)">${a.ev}</div>
+    <div style="font-size:11px;color:var(--txm)">${a.actor.split(' ').slice(0,2).join(' ')}</div>
+    <div style="font-size:9.5px;font-family:monospace;color:var(--txm)">${a.hash}</div>
+  </div>`).join('');
+}
+
+// ======================== UNIFIED FILTER ENGINE ========================
+function applyFilter(view){
+  if(view==='consents'){
+    const q=(document.getElementById('cf-search')?.value||'').toLowerCase();
+    const st=document.getElementById('cf-status')?.value||'';
+    const ty=document.getElementById('cf-type')?.value||'';
+    const filtered=D.consents.filter(c=>{
+      const matchQ=!q||(c.dept+' '+c.purpose+' '+c.id+' '+c.cit).toLowerCase().includes(q);
+      const matchS=!st||c.status===st;
+      const matchT=!ty||c.type===ty;
+      return matchQ&&matchS&&matchT;
+    });
+    const tbody=document.getElementById('consents-tbody');
+    if(tbody) tbody.innerHTML=renderConsentRows(filtered);
+  }
+  else if(view==='registry'){
+    const q=(document.getElementById('rf-search')?.value||'').toLowerCase();
+    const dept=document.getElementById('rf-dept')?.value||'';
+    const st=document.getElementById('rf-status')?.value||'';
+    const ty=document.getElementById('rf-type')?.value||'';
+    const filtered=D.consents.filter(c=>{
+      const matchQ=!q||(c.dept+' '+c.purpose+' '+c.id+' '+c.cit).toLowerCase().includes(q);
+      const matchD=!dept||c.dept===dept;
+      const matchS=!st||c.status===st;
+      const matchT=!ty||c.type===ty;
+      return matchQ&&matchD&&matchS&&matchT;
+    });
+    const tbody=document.getElementById('registry-tbody');
+    if(tbody) tbody.innerHTML=renderRegistryRows(filtered);
+    const cnt=document.getElementById('reg-count');
+    if(cnt) cnt.innerHTML=`Showing <strong>${filtered.length}</strong> of ${D.consents.length} records${filtered.length<D.consents.length?' <span style="color:var(--teal)">(filtered)</span>':''}`;
+    const foot=document.getElementById('reg-footer');
+    if(foot) foot.textContent=`${filtered.length} record(s) shown`;
+  }
+  else if(view==='audit'){
+    const q=(document.getElementById('af-search')?.value||'').toLowerCase();
+    const ty=document.getElementById('af-type')?.value||'';
+    const days=parseInt(document.getElementById('af-date')?.value||'0');
+    const cutoff=days?new Date(Date.now()-days*864e5):null;
+    const filtered=D.audit.filter(a=>{
+      const matchQ=!q||(a.ev+' '+a.type+' '+a.actor+' '+a.hash).toLowerCase().includes(q);
+      const matchT=!ty||a.type===ty;
+      const matchD=!cutoff||new Date(a.ts)>=cutoff;
+      return matchQ&&matchT&&matchD;
+    });
+    const tbody=document.getElementById('audit-tbody');
+    if(tbody) tbody.innerHTML=renderAuditRows(filtered);
+    const cnt=document.getElementById('audit-count');
+    if(cnt) cnt.textContent=filtered.length+' entries';
+  }
+}
+
+// ======================== SIDEBAR TOGGLE (mobile) ========================
+function toggleSidebar(){
+  const sb=document.getElementById('sb');
+  const bd=document.getElementById('sb-backdrop');
+  const open=sb.classList.toggle('open');
+  bd.style.display=open?'block':'none';
+}
+
 
 // Inject spinner CSS
 (function(){const s=document.createElement('style');s.textContent='@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}';document.head.appendChild(s)})();
